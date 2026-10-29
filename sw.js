@@ -1,5 +1,5 @@
-const CACHE = "iran-logo-kit-v4";
-const SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./data/logos.json", "./manifest.webmanifest", "./icon.svg"];
+const CACHE = "iran-logo-kit-v5";
+const SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./data/logos.json", "./manifest.webmanifest", "./icon.svg", "./fonts/Vazirmatn-Variable.woff2"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
 });
@@ -9,8 +9,8 @@ self.addEventListener("activate", e => {
 self.addEventListener("fetch", e => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin) return;
-  // logos: stale-while-revalidate, so once viewed they work offline
-  if (url.pathname.includes("/logos/")) {
+  // logos and fonts: stale-while-revalidate, so once viewed they work offline
+  if (url.pathname.includes("/logos/") || url.pathname.includes("/fonts/")) {
     e.respondWith(caches.open(CACHE).then(async c => {
       const hit = await c.match(e.request);
       const net = fetch(e.request).then(r => { if (r.ok) c.put(e.request, r.clone()); return r; }).catch(() => hit);
@@ -18,8 +18,11 @@ self.addEventListener("fetch", e => {
     }));
     return;
   }
-  // pages: network first, fall back to cache
+  // the ZIP is large: never cache it
+  if (url.pathname.endsWith(".zip")) return;
+  // pages, styles, scripts, data: network first, fall back to cache
   e.respondWith(fetch(e.request).then(r => {
-    const copy = r.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); return r;
+    if (r.ok) { const copy = r.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); }
+    return r;
   }).catch(() => caches.match(e.request)));
 });
