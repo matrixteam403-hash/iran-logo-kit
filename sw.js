@@ -1,4 +1,4 @@
-const CACHE = "iran-logo-kit-v3";
+const CACHE = "iran-logo-kit-v4";
 const SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./data/logos.json", "./manifest.webmanifest", "./icon.svg"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));

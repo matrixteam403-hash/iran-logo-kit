@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>مخزن لوگوهای برندهای ایرانی | Iran Logo Kit</title>
-<meta name="description" content="۸۳۴ لوگوی برندهای ایرانی در فرمت SVG و PNG؛ جستجو، ویرایش رنگ، تبدیل فرمت و دانلود یکجا.">
+<title>مخزن لوگوهای برندهای ایرانی</title>
+<meta name="description" content="۸۳۴ لوگوی برندهای ایرانی در فرمت SVG و PNG، با جستجو و دانلود.">
 <meta name="theme-color" content="#020c07">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -12,245 +12,38 @@
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
+<header class="top" id="top">
+  <div class="bar">
     <a class="brand" href="#/" aria-label="صفحه‌ی اصلی">
-      <span class="logo-mark">ع</span>
-      <span class="t">مخزن لوگوهای ایرانی</span>
+      <span class="mark" aria-hidden="true">ل</span>
+      <span>مخزن لوگو</span>
     </a>
-    <nav class="links" aria-label="ناوبری اصلی">
-      <a href="#/" data-nav="gallery">گالری</a>
-      <a href="#/stats" data-nav="stats">آمار</a>
-      <a href="#/game" data-nav="game">بازی</a>
-      <a href="#/changelog" data-nav="changelog">تغییرات</a>
+    <nav class="menu" aria-label="اصلی">
+      <a href="#logos">لوگوها</a>
+      <a href="#download">دانلود</a>
+      <a href="#about">درباره</a>
     </nav>
-    <div class="hright">
-      <button class="iconbtn" id="textBtn" type="button" aria-label="اندازه‌ی متن" title="اندازه‌ی متن"><i data-ic="type"></i></button>
-      <button class="iconbtn" id="contrastBtn" type="button" aria-label="کنتراست بالا" title="کنتراست بالا" aria-pressed="false"><i data-ic="contrast"></i></button>
-      <button class="iconbtn hide-sm" id="motionBtn" type="button" aria-label="کاهش انیمیشن" title="کاهش انیمیشن" aria-pressed="false"><i data-ic="pause"></i></button>
-      <button class="iconbtn" id="helpBtn" type="button" aria-label="راهنمای سریع" title="راهنمای سریع"><i data-ic="help"></i></button>
-      <a class="btn sm" href="download/iran-brand-logos-all-formats.zip" download><i data-ic="download"></i>ZIP</a>
-    </div>
+    <a class="pill" href="download/iran-brand-logos-all-formats.zip" download>دانلود کامل</a>
   </div>
 </header>
 
-<nav class="bnav" aria-label="ناوبری موبایل">
-  <a href="#/" data-nav="gallery"><i data-ic="home"></i>گالری</a>
-  <a href="#/stats" data-nav="stats"><i data-ic="bars"></i>آمار</a>
-  <a href="#/game" data-nav="game"><i data-ic="gamepad"></i>بازی</a>
-  <a href="#/changelog" data-nav="changelog"><i data-ic="clock"></i>تغییرات</a>
-</nav>
-
-<main id="app">
-
-  <!-- GALLERY -->
-  <div id="v-gallery">
-    <div class="hero">
-      <div class="blob b1"></div><div class="blob b2"></div>
-      <div class="wrap">
-        <span class="pill"><i></i>رایگان و متن‌باز · MIT</span>
-        <h1>همه‌ی لوگوهای برندهای ایرانی،<br><span>یک‌جا و آماده‌ی استفاده</span></h1>
-        <p>برندهای ایرانی در ۲۱ دسته؛ هر لوگو در نسخه‌ی رنگی و تک‌رنگ، با فرمت وکتوری SVG و تصویری PNG.</p>
-        <div class="cta">
-          <a class="btn" href="#logos"><i data-ic="grid"></i>مرور لوگوها</a>
-          <button class="btn ghost" id="randomBtn" type="button"><i data-ic="dice"></i>لوگوی تصادفی</button>
-          <a class="btn ghost" href="download/iran-brand-logos-all-formats.zip" download><i data-ic="download"></i>دانلود کامل</a>
-        </div>
-        <a class="otd" id="otd" href="#/" aria-label="لوگوی امروز"></a>
-      </div>
-    </div>
-
-    <div class="wrap">
-      <div class="stats">
-        <div class="stat"><b>۴۰۵</b><small>برند یکتا</small></div>
-        <div class="stat"><b>۸۳۴</b><small>فایل لوگو</small></div>
-        <div class="stat"><b>۲۱</b><small>دسته‌ی صنعتی</small></div>
-        <div class="stat"><b>۲</b><small>فرمت (SVG و PNG)</small></div>
-      </div>
-    </div>
-
-    <section id="logos" class="view" style="padding-top:44px">
-      <div class="wrap">
-        <h2 class="sec">گالری لوگوها</h2>
-        <p class="sec-sub">روی هر لوگو بزنید تا صفحه‌ی اختصاصی آن باز شود. کلید <kbd>/</kbd> میانبر جستجو است.</p>
-      </div>
-      <div class="toolbar" id="toolbar">
-        <div class="tb">
-          <label class="search">
-            <span class="sr">جستجو</span>
-            <input id="q" type="search" list="qlist" placeholder="جستجوی نام برند یا دسته…" autocomplete="off">
-            <datalist id="qlist"></datalist>
-            <i data-ic="search"></i>
-          </label>
-          <span class="count" id="count" aria-live="polite"></span>
-        </div>
-        <div class="filters">
-          <select id="cat" aria-label="دسته"></select>
-          <select id="sort" aria-label="مرتب‌سازی">
-            <option value="name">نام (الفبا)</option>
-            <option value="cat">دسته</option>
-            <option value="var">نسخه</option>
-          </select>
-          <div class="seg" id="variant" role="group" aria-label="نسخه">
-            <button data-v="all" class="on" type="button">همه</button>
-            <button data-v="color" type="button">رنگی</button>
-            <button data-v="mono" type="button">تک‌رنگ</button>
-          </div>
-          <div class="seg" id="layout" role="group" aria-label="نمایش">
-            <button data-l="grid" class="on" type="button" aria-label="شبکه‌ای"><i data-ic="grid"></i></button>
-            <button data-l="list" type="button" aria-label="فهرستی"><i data-ic="list"></i></button>
-          </div>
-          <label class="range" title="اندازه‌ی کارت‌ها">اندازه
-            <input id="size" type="range" min="130" max="260" value="170" aria-label="اندازه‌ی کارت‌ها">
-          </label>
-        </div>
-        <div class="chips" id="chips"></div>
-        <div class="hist" id="hist"></div>
-      </div>
-      <div class="wrap">
-        <div class="grid" id="grid"></div>
-        <div class="sentinel" id="sentinel"></div>
-        <div class="more"><button class="btn ghost" id="moreBtn" type="button" hidden>نمایش بیشتر</button></div>
-        <div class="empty" id="empty">
-          <div>موردی پیدا نشد.</div>
-          <div class="sugg" id="sugg"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="download" class="view" style="padding-top:0">
-      <div class="wrap">
-        <div class="band">
-          <div>
-            <h2>همه‌ی لوگوها را یک‌جا بگیرید</h2>
-            <p>فایل ZIP شامل SVG، PNG (۵۱۲px با پس‌زمینه‌ی شفاف)، فهرست CSV و لایسنس.</p>
-            <div class="formats"><span>SVG</span><span>PNG 512px</span><span>CSV</span><span>MIT</span></div>
-          </div>
-          <a class="btn" href="download/iran-brand-logos-all-formats.zip" download><i data-ic="download"></i>دانلود ZIP (حدود ۲۶ MB)</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="usage" class="view" style="padding-top:0">
-      <div class="wrap">
-        <h2 class="sec">راهنمای استفاده</h2>
-        <p class="sec-sub">سه قدم تا قرار دادن لوگو در پروژه‌ی شما.</p>
-        <div class="steps">
-          <div class="step"><div class="n">۱</div><h4>فرمت را انتخاب کنید</h4><p>برای وب و طراحی، SVG بهترین کیفیت را دارد. PNG برای اسلایدها و پیام‌رسان‌ها مناسب است.</p></div>
-          <div class="step"><div class="n">۲</div><h4>نسخه‌ی مناسب را بردارید</h4><p>نسخه‌ی رنگی را روی پس‌زمینه‌ی تیره‌ی شما و نسخه‌ی تک‌رنگ را روی پس‌زمینه‌های شلوغ به کار ببرید.</p></div>
-          <div class="step"><div class="n">۳</div><h4>در HTML قرار دهید</h4><pre class="code">&lt;img src="logos/svg/banks/color/ansar.svg"
-     alt="بانک انصار" width="120"&gt;</pre></div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- LOGO DETAIL -->
-  <div id="v-logo" class="hidden"></div>
-
-  <!-- STATS -->
-  <div id="v-stats" class="hidden">
-    <section class="view wrap" style="padding-top:40px">
-      <h2 class="sec">آمار مخزن</h2>
-      <p class="sec-sub">تعداد لوگوها در هر دسته و نسخه، و دانلودهای شما روی همین مرورگر.</p>
-      <div class="panels two">
-        <div class="panel"><h4><span class="dot"></span>تعداد در هر دسته</h4><div class="bars" id="barsCat"></div></div>
-        <div class="panel"><h4><span class="dot"></span>نسخه‌ها و دانلودهای شما</h4><div class="bars" id="barsVar"></div>
-          <p class="fine" id="dlTotal"></p></div>
-      </div>
-    </section>
-  </div>
-
-  <!-- GAME -->
-  <div id="v-game" class="hidden">
-    <div class="wrap">
-      <div class="crumbs"><a href="#/">گالری</a><span class="sep">/</span><span>بازی حدس برند</span></div>
-      <div class="dhero game">
-        <div class="stage">
-          <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
-          <div class="tile" id="gTile"><img id="gImg" alt="لوگوی ناشناس"></div>
-        </div>
-        <div class="dinfo">
-          <div class="ghud" aria-live="polite">
-            <span class="chip cy" id="gRound"></span><span class="chip" id="gScoreChip"></span><span class="chip gr" id="gStreak"></span>
-          </div>
-          <div class="gprog" aria-hidden="true"><i id="gBar"></i></div>
-          <h1 id="gTitle">کدام برند است؟</h1>
-          <p class="lead" id="gLead">لوگو را نگاه کن و نام درست برند را انتخاب کن. (کلیدهای ۱ تا ۴ هم کار می‌کنند)</p>
-          <div class="opts" id="gOpts"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CHANGELOG -->
-  <div id="v-changelog" class="hidden">
-    <section class="view wrap" style="padding-top:40px">
-      <h2 class="sec">تغییرات</h2>
-      <p class="sec-sub">تاریخچه‌ی به‌روزرسانی‌های مخزن.</p>
-      <div class="logroll">
-        <div class="entry"><b>نسخه‌ی ۲.۱</b>
-          <ul>
-            <li>پس‌زمینه‌ی سیاه، کدِ جدا برای CSS و JS، و نسخه‌بندی ذخیره‌سازی</li>
-            <li>بازطراحی بازی: کلید ۱ تا ۴، سری پاسخ درست و بهترین رکورد</li>
-            <li>تمرکز صفحه روی عنوان هنگام تغییر صفحه، و تله‌ی فوکوس در تور</li>
-            <li>رندر بهینه‌تر کارت‌ها، جلوه‌های سبک‌تر در موبایل و پشتیبانی از کاهش حرکت</li>
-            <li>رنگ رسمی لوگوهای زیتل و نیرو موتور؛ پرس‌کیت چاپی کامل‌تر</li>
-          </ul></div>
-        <div class="entry"><b>نسخه‌ی ۲.۰</b>
-          <ul>
-            <li>صفحه‌ی اختصاصی برای هر لوگو با انیمیشن، زوم و ویرایش رنگ</li>
-            <li>تبدیل فرمت داخل مرورگر (PNG، WebP، JPG)</li>
-            <li>نمای فهرستی، بازی حدس زدن برند و آمار دسته‌ها</li>
-            <li>حالت تیره، کار آفلاین (PWA) و کنترل اندازه‌ی متن</li>
-            <li>بازسازی همه‌ی PNGها با رندر صحیح رنگ و شفافیت</li>
-          </ul></div>
-        <div class="entry"><b>نسخه‌ی ۱.۰</b> · اولین انتشار با ۸۳۴ لوگو و ZIP کامل</div>
-      </div>
-    </section>
-  </div>
-
-  <!-- 404 -->
-  <div id="v-404" class="hidden">
-    <section class="view wrap nf">
-      <div class="big">۴۰۴</div>
-      <p class="sec-sub" style="margin-top:10px">این صفحه پیدا نشد. شاید این لوگو کمک کند:</p>
-      <div class="nfimg"><img id="nfImg" alt=""></div>
-      <a class="btn" href="#/"><i data-ic="home"></i>بازگشت به گالری</a>
-    </section>
-  </div>
-
+<main id="app" tabindex="-1">
+  <!-- gallery, detail and 404 views are rendered by app.js -->
+  <noscript><p class="notice">برای مشاهده‌ی لوگوها، جاوااسکریپت را فعال کنید.</p></noscript>
 </main>
 
-<footer>
-  <div class="wrap">
+<footer id="about">
+  <div class="wrap foot">
     <div>
-      <div style="font-weight:800;color:var(--ink);margin-bottom:4px">مخزن لوگوهای ایرانی</div>
-      <div>لوگوها متعلق به برندهای مربوطه‌اند. لایسنس کد و داده‌ها: MIT.</div>
-      <div id="meta" style="margin-top:4px"></div>
+      <div class="foot-title">مخزن لوگوهای ایرانی</div>
+      <p>لوگوها متعلق به برندهای مربوطه است. لایسنس کد و داده‌ها: MIT.</p>
     </div>
-    <div>داده‌ها از پکیج متن‌باز <a href="https://www.npmjs.com/package/@persianlabs/icons" target="_blank" rel="noopener">@persianlabs/icons</a> تهیه شده است.</div>
+    <div>
+      <p>داده‌ها از پکیج متن‌باز <a href="https://www.npmjs.com/package/@persianlabs/icons" target="_blank" rel="noopener">@persianlabs/icons</a> است.</p>
+      <p id="meta"></p>
+    </div>
   </div>
 </footer>
-
-<div class="printonly" id="pressKit"></div>
-<button class="totop" id="totop" type="button" aria-label="بالا"><i data-ic="up"></i></button>
-<div class="progress" id="progress"></div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<div class="overlay" id="tourOv" role="dialog" aria-modal="true" aria-labelledby="tourT">
-  <div class="tour">
-    <h3 id="tourT"></h3>
-    <p id="tourP"></p>
-    <div class="row">
-      <div class="dots" id="tourDots"></div>
-      <div>
-        <button class="btn ghost sm" id="tourSkip" type="button">رد کردن</button>
-        <button class="btn sm" id="tourNext" type="button">بعدی</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script src="app.js" defer></script>
 </body>
