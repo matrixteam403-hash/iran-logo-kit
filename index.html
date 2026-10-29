@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مخزن لوگوهای برندهای ایرانی | Iran Logo Kit</title>
+<meta name="description" content="۸۳۴ لوگوی برندهای ایرانی در فرمت SVG و PNG؛ جستجو، فیلتر و دانلود یکجا.">
+<style>
+  :root{
+    --g50:#f0fdf4; --g100:#dcfce7; --g200:#bbf7d0; --g300:#86efac; --g400:#4ade80;
+    --g500:#22c55e; --g600:#16a34a; --g700:#15803d; --g800:#166534; --g900:#14532d; --g950:#052e16;
+    --ink:#0b1f14; --muted:#5b7a66; --card:#ffffff; --line:#d7f0de;
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:Tahoma,"Segoe UI","Noto Sans Arabic",system-ui,sans-serif;
+    color:var(--ink); background:var(--g50); line-height:1.7;
+  }
+  a{color:inherit}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+
+  /* ---------- Header ---------- */
+  header.top{
+    position:sticky; top:0; z-index:20;
+    backdrop-filter:saturate(1.4) blur(12px);
+    background:rgba(240,253,244,.8); border-bottom:1px solid var(--line);
+  }
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;color:var(--g900)}
+  .logo-mark{
+    width:36px;height:36px;border-radius:11px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--g400),var(--g700)); color:#fff; font-weight:900;
+    box-shadow:0 6px 16px -6px rgba(22,163,74,.6);
+  }
+  nav.links{display:flex;gap:18px;font-size:14px}
+  nav.links a{text-decoration:none;color:var(--muted)}
+  nav.links a:hover{color:var(--g700)}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;text-decoration:none;
+    padding:12px 20px;border-radius:999px;font-weight:700;font-size:15px;font-family:inherit;
+    background:var(--g600); color:#fff; transition:transform .15s, background .2s, box-shadow .2s;
+    box-shadow:0 10px 24px -12px rgba(22,163,74,.9);
+  }
+  .btn:hover{background:var(--g700);transform:translateY(-1px)}
+  .btn.ghost{background:#fff;color:var(--g800);border:1px solid var(--g300);box-shadow:none}
+  .btn.ghost:hover{background:var(--g100)}
+  .btn.sm{padding:8px 14px;font-size:13px}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; overflow:hidden; color:#fff;
+    background:radial-gradient(1200px 500px at 85% -10%,#34d399 0%,transparent 60%),
+               radial-gradient(900px 500px at -10% 110%,#16a34a 0%,transparent 60%),
+               linear-gradient(135deg,#052e16 0%,#14532d 45%,#15803d 100%);
+    padding:88px 0 96px;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.12;
+    background-image:radial-gradient(#fff 1px,transparent 1px); background-size:22px 22px;
+  }
+  .hero .wrap{position:relative;z-index:1;text-align:center}
+  .pill{
+    display:inline-block; padding:6px 16px; border-radius:999px; font-size:13px;
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(34px,5.4vw,60px);line-height:1.2;margin:0 0 18px;font-weight:900;letter-spacing:-.5px}
+  .hero h1 span{color:#86efac}
+  .hero p{max-width:640px;margin:0 auto 34px;color:#d1fae5;font-size:17px}
+  .hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .hero .btn{background:#fff;color:var(--g800);box-shadow:0 14px 30px -14px rgba(0,0,0,.5)}
+  .hero .btn:hover{background:var(--g100)}
+  .hero .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+  .hero .btn.ghost:hover{background:rgba(255,255,255,.12)}
+
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:-52px auto 0;position:relative;z-index:2;
+  }
+  .stat{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;text-align:center;
+    box-shadow:0 20px 40px -28px rgba(5,46,22,.45);
+  }
+  .stat b{display:block;font-size:30px;color:var(--g700);font-weight:900}
+  .stat small{color:var(--muted);font-size:13px}
+
+  /* ---------- Toolbar ---------- */
+  section{padding:64px 0}
+  h2.sec{font-size:28px;margin:0 0 6px;color:var(--g900);font-weight:900}
+  p.sec-sub{margin:0 0 26px;color:var(--muted)}
+  .toolbar{
+    position:sticky; top:72px; z-index:10; background:var(--g50); padding:12px 0 16px;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .search{
+    flex:1 1 280px; position:relative;
+  }
+  .search input{
+    width:100%; padding:14px 46px 14px 18px; border-radius:14px; border:1px solid var(--g200);
+    font:inherit; font-size:15px; background:#fff; color:var(--ink); outline:none;
+    transition:border .2s, box-shadow .2s;
+  }
+  .search input:focus{border-color:var(--g500);box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+  .search svg{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--g600)}
+  select{
+    padding:13px 14px; border-radius:14px; border:1px solid var(--g200); background:#fff;
+    font:inherit; font-size:14px; color:var(--ink); min-width:200px; outline:none; cursor:pointer;
+  }
+  .seg{display:inline-flex;background:#fff;border:1px solid var(--g200);border-radius:14px;padding:4px}
+  .seg button{
+    border:0;background:transparent;padding:9px 16px;border-radius:10px;font:inherit;font-size:14px;
+    cursor:pointer;color:var(--muted);font-weight:700;
+  }
+  .seg button.on{background:var(--g600);color:#fff}
+  .count{color:var(--muted);font-size:14px;margin-inline-start:auto}
+
+  /* ---------- Grid ---------- */
+  .grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;margin-top:8px;
+  }
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column;
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+    animation:fade .4s ease both;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 22px 40px -26px rgba(22,101,52,.55);border-color:var(--g300)}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .thumb{
+    height:132px; display:grid; place-items:center; padding:22px;
+    background:linear-gradient(180deg,#fff,var(--g50));
+    border-bottom:1px solid var(--line);
+  }
+  .thumb.dark{background:linear-gradient(180deg,#0f2a1c,#14532d)}
+  .thumb img{max-width:100%;max-height:100%;object-fit:contain}
+  .meta{padding:14px 16px 6px}
+  .meta h3{margin:0;font-size:16px;color:var(--ink);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tags{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+  .tag{font-size:11px;padding:3px 9px;border-radius:999px;background:var(--g100);color:var(--g800);font-weight:700}
+  .tag.m{background:#e5e7eb;color:#374151}
+  .tag.cat{background:#ecfdf5;color:var(--g700)}
+  .dl{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 16px 16px;margin-top:auto}
+  .dl a{
+    text-align:center;text-decoration:none;font-size:13px;font-weight:700;padding:9px 0;border-radius:11px;
+    border:1px solid var(--g200);color:var(--g800);background:#fff;transition:.15s;
+  }
+  .dl a:hover{background:var(--g600);color:#fff;border-color:var(--g600)}
+  .empty{display:none;text-align:center;padding:60px 0;color:var(--muted)}
+  .empty.show{display:block}
+
+  /* ---------- Download band ---------- */
+  .band{
+    border-radius:26px; padding:44px 36px; color:#fff; display:flex; align-items:center; justify-content:space-between;
+    gap:24px; flex-wrap:wrap;
+    background:linear-gradient(120deg,#15803d,#16a34a 55%,#4ade80);
+    box-shadow:0 30px 60px -36px rgba(21,128,61,.9);
+  }
+  .band h2{margin:0 0 6px;font-size:26px;font-weight:900}
+  .band p{margin:0;color:#dcfce7}
+  .band .btn{background:#fff;color:var(--g800);box-shadow:none}
+  .band .btn:hover{background:var(--g50)}
+  .formats{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .formats span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:5px 12px;border-radius:999px;font-size:13px}
+
+  /* ---------- Usage ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .step .n{
+    width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-weight:900;color:#fff;
+    background:linear-gradient(135deg,var(--g400),var(--g700));margin-bottom:14px;
+  }
+  .step h4{margin:0 0 6px;font-size:17px;color:var(--g900)}
+  .step p{margin:0;color:var(--muted);font-size:14px}
+  pre{
+    background:var(--g950);color:#bbf7d0;border-radius:14px;padding:16px 18px;overflow:auto;direction:ltr;text-align:left;font-size:13px;
+  }
+
+  footer{background:var(--g950);color:#a7f3d0;padding:40px 0;margin-top:64px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  footer a{color:#86efac}
+
+  .toast{
+    position:fixed;bottom:22px;left:50%;transform:translate(-50%,120px);background:var(--g900);color:#fff;
+    padding:12px 20px;border-radius:999px;font-size:14px;transition:transform .3s;z-index:50;box-shadow:0 14px 30px -10px rgba(0,0,0,.5)
+  }
+  .toast.show{transform:translate(-50%,0)}
+
+  @media (max-width:860px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:1fr}
+    nav.links{display:none}
+    .toolbar{position:static}
+  }
+  @media (max-width:520px){
+    .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+    .count{margin-inline-start:0;width:100%}
+    select{min-width:0;width:100%}
+    .band{padding:30px 22px}
+  }
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <span class="logo-mark">ع</span>
+      <span>مخزن لوگوهای ایرانی</span>
+    </a>
+    <nav class="links">
+      <a href="#logos">لوگوها</a>
+      <a href="#download">دانلود</a>
+      <a href="#usage">راهنما</a>
+    </nav>
+    <a class="btn sm" href="download/iran-brand-logos-all-formats.zip" download>دانلود همه (ZIP)</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <span class="pill">رایگان و متن‌باز · MIT</span>
+      <h1>همه‌ی لوگوهای برندهای ایرانی،<br><span>یک‌جا و آماده‌ی استفاده</span></h1>
+      <p>بیش از ۴۰۰ برند ایرانی در ۲۱ دسته؛ هر لوگو در نسخه‌ی رنگی و تک‌رنگ، با فرمت وکتوری SVG و تصویری PNG.</p>
+      <div class="cta">
+        <a class="btn" href="#logos">مرور لوگوها</a>
+        <a class="btn ghost" href="download/iran-brand-logos-all-formats.zip" download>دانلود کامل</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b id="sBrands">۴۰۵</b><small>برند یکتا</small></div>
+      <div class="stat"><b>۸۳۴</b><small>فایل لوگو</small></div>
+      <div class="stat"><b>۲۱</b><small>دسته‌ی صنعتی</small></div>
+      <div class="stat"><b>۲</b><small>فرمت (SVG و PNG)</small></div>
+    </div>
+  </div>
+
+  <section id="logos">
+    <div class="wrap">
+      <h2 class="sec">گالری لوگوها</h2>
+      <p class="sec-sub">جستجو کنید، دسته را انتخاب کنید و فرمت دلخواه را دانلود کنید.</p>
+
+      <div class="toolbar">
+        <div class="row">
+          <label class="search">
+            <input id="q" type="search" placeholder="جستجوی نام برند… مثلاً بانک، دیجی‌کالا، ایران‌سل" autocomplete="off">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          </label>
+          <select id="cat"></select>
+          <div class="seg" id="variant">
+            <button data-v="all" class="on">همه</button>
+            <button data-v="color">رنگی</button>
+            <button data-v="mono">تک‌رنگ</button>
+          </div>
+          <div class="seg" id="bg">
+            <button data-b="light" class="on">روشن</button>
+            <button data-b="dark">تیره</button>
+          </div>
+          <span class="count" id="count"></span>
+        </div>
+      </div>
+
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty">موردی پیدا نشد. عبارت دیگری را امتحان کنید.</div>
+    </div>
+  </section>
+
+  <section id="download" style="padding-top:0">
+    <div class="wrap">
+      <div class="band">
+        <div>
+          <h2>همه‌ی لوگوها را یک‌جا بگیرید</h2>
+          <p>فایل ZIP شامل SVG، PNG (۵۱۲px با پس‌زمینه‌ی شفاف)، فهرست CSV و فایل لایسنس.</p>
+          <div class="formats"><span>SVG</span><span>PNG 512px</span><span>CSV</span><span>MIT</span></div>
+        </div>
+        <a class="btn" href="download/iran-brand-logos-all-formats.zip" download>دانلود ZIP (حدود ۶۹ MB)</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="usage" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="sec">راهنمای استفاده</h2>
+      <p class="sec-sub">سه قدم تا قرار دادن لوگو در پروژه‌ی شما.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="n">۱</div>
+          <h4>فرمت را انتخاب کنید</h4>
+          <p>برای وب و طراحی، SVG بهترین کیفیت را دارد. PNG برای اسلایدها و پیام‌رسان‌ها مناسب است.</p>
+        </div>
+        <div class="step">
+          <div class="n">۲</div>
+          <h4>نسخه‌ی مناسب را بردارید</h4>
+          <p>نسخه‌ی رنگی را روی پس‌زمینه‌ی روشن و نسخه‌ی تک‌رنگ را روی پس‌زمینه‌های شلوغ یا تیره به کار ببرید.</p>
+        </div>
+        <div class="step">
+          <div class="n">۳</div>
+          <h4>در HTML قرار دهید</h4>
+          <pre>&lt;img src="logos/svg/banks/color/ansar.svg"
+     alt="بانک انصار" width="120"&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div style="font-weight:800;color:#fff;margin-bottom:4px">مخزن لوگوهای ایرانی</div>
+      <div style="font-size:14px">لوگوها متعلق به برندهای مربوطه‌اند. لایسنس کد و داده‌ها: MIT.</div>
+    </div>
+    <div style="font-size:14px">داده‌ها از پکیج متن‌باز <a href="https://www.npmjs.com/package/@persianlabs/icons" target="_blank" rel="noopener">@persianlabs/icons</a> تهیه شده است.</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">در حال دانلود…</div>
+
+<script>
+(() => {
+  const CAT_FA = {
+    "all":"همه‌ی دسته‌ها"
+  };
+  const $ = s => document.querySelector(s);
+  const grid = $("#grid"), q = $("#q"), cat = $("#cat"), count = $("#count"), empty = $("#empty");
+  let data = [], variant = "all", dark = false;
+
+  const norm = s => (s||"").toString().toLowerCase().replace(/[\u200c\u200f\u200e]/g,"").replace(/[ي]/g,"ی").replace(/[ك]/g,"ک");
+
+  fetch("data/logos.json").then(r => r.json()).then(json => {
+    data = json;
+    const cats = [...new Map(json.map(x => [x.category, x.categoryFa])).entries()];
+    cat.innerHTML = `<option value="all">همه‌ی دسته‌ها (${cats.length})</option>` +
+      cats.sort((a,b)=>a[1].localeCompare(b[1],"fa")).map(([k,v]) => `<option value="${k}">${v}</option>`).join("");
+    render();
+  });
+
+  function filtered(){
+    const term = norm(q.value.trim());
+    const c = cat.value;
+    return data.filter(x =>
+      (variant === "all" || x.variant === variant) &&
+      (c === "all" || x.category === c) &&
+      (!term || norm(x.name).includes(term) || norm(x.slug).includes(term) || norm(x.categoryFa).includes(term))
+    );
+  }
+
+  function render(){
+    const list = filtered();
+    count.textContent = `${list.length.toLocaleString("fa-IR")} لوگو`;
+    empty.classList.toggle("show", list.length === 0);
+    grid.innerHTML = list.slice(0, 400).map(x => `
+      <article class="card">
+        <div class="thumb ${dark ? "dark" : ""}">
+          <img loading="lazy" src="${x.svg}" alt="${x.name}">
+        </div>
+        <div class="meta">
+          <h3 title="${x.name}">${x.name}</h3>
+          <div class="tags">
+            <span class="tag ${x.variant==="mono"?"m":""}">${x.variant==="mono"?"تک‌رنگ":"رنگی"}</span>
+            <span class="tag cat">${x.categoryFa}</span>
+          </div>
+        </div>
+        <div class="dl">
+          <a href="${x.svg}" download="${x.slug}-${x.variant}.svg" data-dl>SVG</a>
+          <a href="${x.png}" download="${x.slug}-${x.variant}.png" data-dl>PNG</a>
+        </div>
+      </article>`).join("");
+    if (list.length > 400) {
+      grid.insertAdjacentHTML("beforeend", `<p style="grid-column:1/-1;text-align:center;color:var(--muted)">برای دیدن بقیه، جستجو یا فیلتر را دقیق‌تر کنید (${(list.length-400).toLocaleString("fa-IR")} مورد دیگر).</p>`);
+    }
+  }
+
+  let t;
+  grid.addEventListener("click", e => {
+    const a = e.target.closest("[data-dl]");
+    if (!a) return;
+    const toast = $("#toast");
+    toast.textContent = "دانلود: " + a.getAttribute("download");
+    toast.classList.add("show");
+    clearTimeout(t); t = setTimeout(()=>toast.classList.remove("show"), 1800);
+  });
+
+  q.addEventListener("input", render);
+  cat.addEventListener("change", render);
+  $("#variant").addEventListener("click", e => {
+    const b = e.target.closest("button[data-v]"); if (!b) return;
+    document.querySelectorAll("#variant button").forEach(x => x.classList.toggle("on", x === b));
+    variant = b.dataset.v; render();
+  });
+  $("#bg").addEventListener("click", e => {
+    const b = e.target.closest("button[data-b]"); if (!b) return;
+    document.querySelectorAll("#bg button").forEach(x => x.classList.toggle("on", x === b));
+    dark = b.dataset.b === "dark"; render();
+  });
+})();
+</script>
+</body>
+</html>
