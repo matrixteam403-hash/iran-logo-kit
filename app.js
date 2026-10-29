@@ -133,7 +133,7 @@
     const part = list.slice(0, state.shown);
     grid.innerHTML = part.map(x => `
       <a class="card reveal" href="#/logo/${encodeURIComponent(x.id)}" aria-label="${esc(x.name)}">
-        <div class="tile loading">${imgTag(x)}</div>
+        <div class="tile loading ${x.variant}">${imgTag(x)}</div>
         <div class="meta"><div class="name">${esc(x.name)}</div><div class="cat">${esc(x.categoryFa)} · ${x.variant === "mono" ? "تک‌رنگ" : "رنگی"}</div></div>
       </a>`).join("");
     $("#count").textContent = `${fa(list.length)} لوگو`;
@@ -158,7 +158,7 @@
         <div class="wrap">
           <a class="back" href="#logos">${arrow()} بازگشت به گالری</a>
           <div class="detail">
-            <div class="stage">${imgTag(x)}</div>
+            <div class="stage ${x.variant}">${imgTag(x)}</div>
             <div class="info reveal">
               <p class="kicker">${esc(x.categoryFa)}</p>
               <h1 tabindex="-1">${esc(x.name)}</h1>
@@ -193,7 +193,7 @@
             <div class="grid" style="margin-top:24px">
               ${related.map(y => `
                 <a class="card" href="#/logo/${encodeURIComponent(y.id)}" aria-label="${esc(y.name)}">
-                  <div class="tile loading">${imgTag(y)}</div>
+                  <div class="tile loading ${y.variant}">${imgTag(y)}</div>
                   <div class="meta"><div class="name">${esc(y.name)}</div></div>
                 </a>`).join("")}
             </div>

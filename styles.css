@@ -4,7 +4,7 @@
 :root{
   --bg:#020c07;
   --panel:#07170f;
-  --tile:#eaf8ee;
+  --tile:#000;
   --line:rgba(232,248,238,.10);
   --line2:rgba(232,248,238,.22);
   --text:#e8f8ee;
@@ -85,13 +85,14 @@ select:focus-visible{outline:2px solid var(--accent)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px}
 .card{display:flex;flex-direction:column;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:4px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s;min-width:0}
 .card:hover,.card:focus-visible{transform:translateY(-4px);border-color:var(--accent)}
-.card .tile{aspect-ratio:1/1;background:var(--tile);display:grid;place-items:center;padding:22%;position:relative;overflow:hidden}
+.card .tile{aspect-ratio:1/1;background:var(--tile);border-bottom:1px solid var(--line);display:grid;place-items:center;padding:22%;position:relative;overflow:hidden}
 .card .tile img{width:100%;height:100%;object-fit:contain;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .card:hover .tile img{transform:scale(1.06)}
 .card .meta{padding:14px 16px 16px}
 .card .name{font-size:15px;font-weight:700;line-height:1.4;overflow-wrap:anywhere}
 .card .cat{font-size:12px;color:var(--muted);margin-top:2px}
-.ph{width:100%;height:100%;display:grid;place-items:center;font-size:48px;font-weight:300;color:#14532d}
+.ph{width:100%;height:100%;display:grid;place-items:center;font-size:48px;font-weight:300;color:#1f7a43}
+/* mono logos are white by design, so they are shown as-is on black */
 .tile.loading::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);background-size:200% 100%;animation:shimmer 1.2s infinite}
 @keyframes shimmer{to{background-position:-200% 0}}
 .more{display:flex;justify-content:center;margin:40px 0 0}
@@ -109,7 +110,7 @@ select:focus-visible{outline:2px solid var(--accent)}
 .back{display:inline-flex;gap:8px;text-decoration:none;color:var(--muted);font-size:14px;margin-bottom:36px}
 .back:hover{color:var(--accent)}
 .detail{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,80px);align-items:center}
-.stage{aspect-ratio:1/1;background:var(--tile);border-radius:4px;display:grid;place-items:center;padding:14%;position:relative;overflow:hidden;animation:fade .8s both}
+.stage{aspect-ratio:1/1;background:var(--tile);border:1px solid var(--line);border-radius:4px;display:grid;place-items:center;padding:14%;position:relative;overflow:hidden;animation:fade .8s both}
 .stage img{width:100%;height:100%;object-fit:contain;animation:rise .9s .1s both}
 .info h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:300;margin:0 0 12px;line-height:1.15;overflow-wrap:anywhere}
 .info .sub{color:var(--muted);margin:0 0 32px}
