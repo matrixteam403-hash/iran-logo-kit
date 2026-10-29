@@ -137,6 +137,22 @@
   .empty.show{display:block}
   .empty .sugg{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
 
+  /* ---------- game ---------- */
+  .dhero.game{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+  .ghud{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .gprog{height:6px;border-radius:99px;background:rgba(74,222,128,.12);overflow:hidden;margin-bottom:22px}
+  .gprog i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#86efac,#22d3ee);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+  .game .opts{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+  .game .opts button{padding:16px 12px;border-radius:18px;background:rgba(14,39,27,.8);font-size:1rem;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+  .game .opts button:not(:disabled):hover{box-shadow:0 14px 30px -14px rgba(74,222,128,.7)}
+  .game .opts button:disabled{cursor:default}
+  .game .opts button.ok{box-shadow:0 0 0 1px var(--accent),0 14px 30px -14px rgba(74,222,128,.9)}
+  .game .opts button.bad{box-shadow:0 0 0 1px #f87171}
+  .game .tile.pop img{animation:pop .5s both}
+  .gres{grid-column:1/-1;text-align:center;padding:10px 0}
+  .gres .big{font-size:clamp(3rem,10vw,5rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#86efac,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .gres .actions{justify-content:center}
+
   /* ---------- detail ---------- */
   #v-logo .wrap{padding-bottom:20px}
   .crumbs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:22px 0 8px;font-size:.875rem;color:var(--muted)}
@@ -488,16 +504,24 @@
 
   <!-- GAME -->
   <div id="v-game" class="hidden">
-    <section class="view wrap" style="padding-top:40px">
-      <h2 class="sec">حدس بزن کدام برند؟</h2>
-      <p class="sec-sub">لوگو را ببین و نام درست برند را انتخاب کن. ۱۰ سؤال.</p>
-      <div class="gamebox">
-        <div class="qimg"><img id="gImg" alt="لوگوی ناشناس"></div>
-        <div class="opts" id="gOpts"></div>
-        <div class="score" id="gScore" aria-live="polite"></div>
-        <button class="btn ghost sm" id="gNext" type="button" style="margin-top:12px" hidden>سؤال بعدی</button>
+    <div class="wrap">
+      <div class="crumbs"><a href="#/">گالری</a><span class="sep">/</span><span>بازی حدس برند</span></div>
+      <div class="dhero game">
+        <div class="stage">
+          <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
+          <div class="tile" id="gTile"><img id="gImg" alt="لوگوی ناشناس"></div>
+        </div>
+        <div class="dinfo">
+          <div class="ghud" aria-live="polite">
+            <span class="chip cy" id="gRound"></span><span class="chip" id="gScoreChip"></span>
+          </div>
+          <div class="gprog" aria-hidden="true"><i id="gBar"></i></div>
+          <h1 id="gTitle">کدام برند است؟</h1>
+          <p class="lead" id="gLead">لوگو را نگاه کن و نام درست برند را انتخاب کن.</p>
+          <div class="opts" id="gOpts"></div>
+        </div>
       </div>
-    </section>
+    </div>
   </div>
 
   <!-- CHANGELOG -->
@@ -1060,38 +1084,55 @@
   }
 
   /* ---------- game ---------- */
-  let gameScore = 0, gameRound = 0, gameAnswer = null;
+  let gameScore = 0, gameRound = 0, gameAnswer = null, gameTimer = null;
   const GAME_ROUNDS = 10;
-  function gameStart(){ gameScore = 0; gameRound = 0; gameNext(); }
+  function gameHud(){
+    $("#gRound").textContent = `سؤال ${fa(gameRound)} از ${fa(GAME_ROUNDS)}`;
+    $("#gScoreChip").textContent = `امتیاز: ${fa(gameScore)}`;
+    $("#gBar").style.width = (gameRound / GAME_ROUNDS * 100) + "%";
+  }
+  function gameStart(){
+    clearTimeout(gameTimer); gameScore = 0; gameRound = 0; gameAnswer = null;
+    $("#gTitle").textContent = "کدام برند است؟";
+    $("#gLead").textContent = "لوگو را نگاه کن و نام درست برند را انتخاب کن.";
+    $(".gres")?.remove();
+    gameNext();
+  }
   function gameNext(){
-    if (gameRound >= GAME_ROUNDS) {
-      $("#gImg").removeAttribute("src"); $("#gOpts").innerHTML = "";
-      $("#gScore").innerHTML = `امتیاز نهایی: <b>${fa(gameScore)}</b> از ${fa(GAME_ROUNDS)}<br><button class="btn sm" id="gAgain" type="button" style="margin-top:10px">بازی دوباره</button>`;
-      $("#gNext").hidden = true;
-      $("#gAgain").addEventListener("click", gameStart);
-      return;
-    }
+    clearTimeout(gameTimer);
+    if (gameRound >= GAME_ROUNDS) return gameFinish();
     gameRound++;
     const x = data[Math.floor(Math.random()*data.length)];
     const names = new Set([x.name]);
     while (names.size < 4) names.add(data[Math.floor(Math.random()*data.length)].name);
     const opts = [...names].sort(() => Math.random() - 0.5);
     gameAnswer = x.name;
-    const img = $("#gImg"); img.src = x.svg;
+    const tile = $("#gTile");
+    tile.classList.remove("pop"); void tile.offsetWidth; tile.classList.add("pop");
+    $("#gImg").src = x.svg;
     $("#gOpts").innerHTML = opts.map(o => `<button type="button" data-o="${esc(o)}">${esc(o)}</button>`).join("");
-    $("#gScore").textContent = `سؤال ${fa(gameRound)} از ${fa(GAME_ROUNDS)} · امتیاز: ${fa(gameScore)}`;
-    $("#gNext").hidden = true;
+    gameHud();
+  }
+  function gameFinish(){
+    gameAnswer = null;
+    $("#gTitle").textContent = "بازی تمام شد!";
+    $("#gLead").textContent = gameScore >= 8 ? "عالی بود؛ چشم تیزی داری." : gameScore >= 5 ? "خوب بود؛ یک دور دیگر بازی کن." : "دفعه‌ی بعد بهتر می‌شود.";
+    $("#gOpts").innerHTML = "";
+    $("#gBar").style.width = "100%";
+    $("#gRound").textContent = `پایان بازی`;
+    $("#gScoreChip").textContent = `امتیاز نهایی: ${fa(gameScore)} از ${fa(GAME_ROUNDS)}`;
+    $("#gOpts").insertAdjacentHTML("afterend", `<div class="gres"><div class="big">${fa(gameScore)}/${fa(GAME_ROUNDS)}</div><div class="actions"><button class="btn sm" id="gAgain" type="button">${ic("arrowRight")} بازی دوباره</button></div></div>`);
+    $("#gAgain").addEventListener("click", gameStart);
   }
   $("#gOpts").addEventListener("click", e => {
     const b = e.target.closest("[data-o]"); if (!b || !gameAnswer) return;
-    if (b.dataset.o === gameAnswer) { gameScore++; b.classList.add("ok"); toast("درست!"); }
-    else { b.classList.add("bad"); toast("اشتباه؛ جواب: " + gameAnswer); }
+    if (b.dataset.o === gameAnswer) { gameScore++; b.classList.add("ok"); }
+    else { b.classList.add("bad"); }
     $$("#gOpts button").forEach(x => { x.disabled = true; if (x.dataset.o === gameAnswer) x.classList.add("ok"); });
     gameAnswer = null;
-    $("#gScore").textContent = `سؤال ${fa(gameRound)} از ${fa(GAME_ROUNDS)} · امتیاز: ${fa(gameScore)}`;
-    $("#gNext").hidden = false;
+    gameHud();
+    gameTimer = setTimeout(gameNext, 1100);
   });
-  $("#gNext").addEventListener("click", gameNext);
 
   /* ---------- tour ---------- */
   const TOUR = [
