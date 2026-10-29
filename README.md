@@ -3,7 +3,10 @@
 سایت استاتیک برای GitHub Pages: ۸۳۴ لوگو (SVG + PNG) در ۲۱ دسته، با جستجو، فیلتر و دانلود.
 
 ## ساختار
-- `index.html` – صفحه‌ی اصلی (CSS و JS داخلی، بدون وابستگی خارجی)
+- `index.html` – ساختار صفحه
+- `styles.css` – استایل‌ها (تم سبز-سیاه، RTL)
+- `app.js` – منطق برنامه (vanilla JS، بدون وابستگی)
+- `sw.js` / `manifest.webmanifest` – کار آفلاین و نصب به‌عنوان اپ
 - `data/logos.json` – فهرست لوگوها
 - `logos/svg/` و `logos/png/` – فایل‌ها
 - `download/iran-brand-logos-all-formats.zip` – پکیج کامل
