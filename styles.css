@@ -340,3 +340,37 @@
     .printonly .pk{padding:24px;color:#000}
     .printonly img{max-width:220px;max-height:220px}
   }
+
+/* ---------- polish (v3) ---------- */
+/* virtualization-like rendering: off-screen cards are skipped by the browser */
+.card{content-visibility:auto;contain-intrinsic-size:auto 230px}
+/* consistent headings and cards on secondary pages */
+#v-stats h2.sec,#v-changelog h2.sec,#v-404 .big{background:var(--gradient-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+#v-stats h2.sec::after,#v-changelog h2.sec::after{content:"";display:block;width:56px;height:4px;border-radius:99px;background:var(--gradient-main);margin-top:10px}
+.logroll .entry{background:var(--glass);border:1px solid var(--line2);border-radius:var(--radius);padding:18px 20px;backdrop-filter:blur(10px)}
+.logroll .entry b{color:var(--accent);font-size:1.05rem}
+.game .ghud .chip{font-variant-numeric:tabular-nums}
+.game .opts button .k{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:7px;margin-inline-end:8px;font-size:.75rem;background:rgba(74,222,128,.12);color:var(--accent);vertical-align:middle}
+/* contrast mode: stronger outlines */
+:root[data-contrast="1"] :focus-visible{outline-width:3px;outline-color:#fff}
+:root[data-contrast="1"] .card,:root[data-contrast="1"] .panel,:root[data-contrast="1"] .dhero,:root[data-contrast="1"] .tour{border-color:#6aa583}
+/* press kit (print) */
+.pk{display:grid;gap:12px;justify-items:start;color:#000;font-family:Tahoma,sans-serif}
+.pk .pk-logo{width:220px;height:220px;border-radius:24px;background:#f1faf4;border:1px solid #cfe5d6;display:grid;place-items:center;padding:24px}
+.pk .pk-logo img{max-width:100%;max-height:100%}
+.pk h1{margin:0;font-size:28px}
+.pk table{border-collapse:collapse;font-size:13px}
+.pk td{border-bottom:1px solid #ddd;padding:6px 14px 6px 0}
+.pk td:first-child{color:#555;width:130px}
+.pk small{color:#555}
+/* mobile and motion: lighter effects on small screens */
+@media (max-width:640px){
+  .blob,.hero::after{display:none}
+  .card,.panel,.stat{animation:none}
+  .dhero::before,.dhero::after{animation:none}
+  .btn::after{display:none}
+  header.top{backdrop-filter:none;background:rgba(2,12,7,.97)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}

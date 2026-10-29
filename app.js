@@ -105,7 +105,8 @@
     readUrl(); syncControls(); route();
     setupOtd(); setupRandom(); setupTour();
   }).catch(() => {
-    $("#grid").innerHTML = `<p class="empty show">بارگذاری داده‌ها ناموفق بود. صفحه را دوباره باز کنید.</p>`;
+    $("#grid").innerHTML = `<div class="empty show" role="alert">بارگذاری داده‌ها ناموفق بود.<br><button class="btn sm" id="retryBtn" type="button" style="margin-top:10px">تلاش دوباره</button></div>`;
+    $("#retryBtn")?.addEventListener("click", () => location.reload());
   });
 
   /* ---------- gallery ---------- */
@@ -495,9 +496,19 @@
   }
 
   function printPressKit(x){
-    $("#pressKit").innerHTML = `<div class="pk"><h1>${esc(x.name)}</h1><p>دسته: ${esc(x.categoryFa)} · نسخه: ${x.variant==="mono"?"تک‌رنگ":"رنگی"}</p>
-      <p><img src="${location.origin}${location.pathname.replace(/index\.html$/,"")}${x.png}" alt=""></p>
-      <p>منبع: مخزن لوگوهای ایرانی · ${location.href}</p></div>`;
+    const base = location.origin + location.pathname.replace(/index\.html$/, "");
+    const variant = x.variant === "mono" ? "تک‌رنگ" : "رنگی";
+    $("#pressKit").innerHTML = `<div class="pk">
+      <div class="pk-logo"><img src="${base}${x.png}" alt="${esc(x.name)}"></div>
+      <h1>${esc(x.name)}</h1>
+      <table>
+        <tr><td>دسته</td><td>${esc(x.categoryFa)}</td></tr>
+        <tr><td>نسخه</td><td>${variant}</td></tr>
+        <tr><td>فایل‌ها</td><td>SVG (وکتور) و PNG ۵۱۲px با پس‌زمینه‌ی شفاف</td></tr>
+        <tr><td>لایسنس کد و داده</td><td>MIT · لوگو متعلق به برند ${esc(x.name)} است</td></tr>
+        <tr><td>منبع</td><td>${esc(base)}</td></tr>
+      </table>
+      <small>برای استفاده‌ی تبلیغاتی یا تجاری، ابتدا از دارنده‌ی برند اجازه بگیرید.</small></div>`;
     setTimeout(() => window.print(), 150);
   }
 
@@ -514,15 +525,16 @@
   }
 
   /* ---------- game ---------- */
-  let gameScore = 0, gameRound = 0, gameAnswer = null, gameTimer = null;
+  let gameScore = 0, gameRound = 0, gameAnswer = null, gameTimer = null, gameStreak = 0, gameBest = store.get("gameBest", 0);
   const GAME_ROUNDS = 10;
   function gameHud(){
     $("#gRound").textContent = `سؤال ${fa(gameRound)} از ${fa(GAME_ROUNDS)}`;
     $("#gScoreChip").textContent = `امتیاز: ${fa(gameScore)}`;
+    $("#gStreak").textContent = `سری: ${fa(gameStreak)} · بهترین: ${fa(gameBest)}`;
     $("#gBar").style.width = (gameRound / GAME_ROUNDS * 100) + "%";
   }
   function gameStart(){
-    clearTimeout(gameTimer); gameScore = 0; gameRound = 0; gameAnswer = null;
+    clearTimeout(gameTimer); gameScore = 0; gameRound = 0; gameAnswer = null; gameStreak = 0;
     $("#gTitle").textContent = "کدام برند است؟";
     $("#gLead").textContent = "لوگو را نگاه کن و نام درست برند را انتخاب کن.";
     $(".gres")?.remove();
@@ -540,7 +552,7 @@
     const tile = $("#gTile");
     tile.classList.remove("pop"); void tile.offsetWidth; tile.classList.add("pop");
     $("#gImg").src = x.svg;
-    $("#gOpts").innerHTML = opts.map(o => `<button type="button" data-o="${esc(o)}">${esc(o)}</button>`).join("");
+    $("#gOpts").innerHTML = opts.map((o, i) => `<button type="button" data-o="${esc(o)}"><span class="k">${fa(i+1)}</span>${esc(o)}</button>`).join("");
     gameHud();
   }
   function gameFinish(){
@@ -554,10 +566,19 @@
     $("#gOpts").insertAdjacentHTML("afterend", `<div class="gres"><div class="big">${fa(gameScore)}/${fa(GAME_ROUNDS)}</div><div class="actions"><button class="btn sm" id="gAgain" type="button">${ic("arrowRight")} بازی دوباره</button></div></div>`);
     $("#gAgain").addEventListener("click", gameStart);
   }
+  /* keys 1-4 answer the question while the game view is open */
+  document.addEventListener("keydown", e => {
+    if (!$("#v-game") || $("#v-game").classList.contains("hidden") || !gameAnswer) return;
+    if (e.target.matches("input,textarea,select")) return;
+    const n = ["1","2","3","4"].indexOf(e.key);
+    if (n < 0) return;
+    const b = $$("#gOpts button")[n]; if (b) b.click();
+  });
   $("#gOpts").addEventListener("click", e => {
     const b = e.target.closest("[data-o]"); if (!b || !gameAnswer) return;
-    if (b.dataset.o === gameAnswer) { gameScore++; b.classList.add("ok"); }
-    else { b.classList.add("bad"); }
+    if (b.dataset.o === gameAnswer) { gameScore++; gameStreak++; b.classList.add("ok"); }
+    else { gameStreak = 0; b.classList.add("bad"); }
+    if (gameStreak > gameBest) { gameBest = gameStreak; store.set("gameBest", gameBest); }
     $$("#gOpts button").forEach(x => { x.disabled = true; if (x.dataset.o === gameAnswer) x.classList.add("ok"); });
     gameAnswer = null;
     gameHud();
@@ -639,7 +660,13 @@
 
   /* ---------- router ---------- */
   const VIEWS = ["v-gallery","v-logo","v-stats","v-game","v-changelog","v-404"];
-  function showView(id){ VIEWS.forEach(v => $("#"+v).classList.toggle("hidden", v !== id)); }
+  function showView(id){
+    VIEWS.forEach(v => $("#"+v).classList.toggle("hidden", v !== id));
+    if (id !== "v-gallery") {
+      window.scrollTo({ top: 0, behavior: "auto" });
+      setTimeout(() => { const t = document.querySelector("#"+id+" h1, #"+id+" h2"); if (t) { t.tabIndex = -1; t.focus({ preventScroll: true }); } }, 0);
+    }
+  }
   function setNav(name){ $$("[data-nav]").forEach(a => a.classList.toggle("on", a.dataset.nav === name)); }
   function route(){
     const h = location.hash || "#/";
