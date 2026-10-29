@@ -1,248 +1,360 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" data-contrast="0">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>مخزن لوگوهای برندهای ایرانی | Iran Logo Kit</title>
-<meta name="description" content="۸۳۴ لوگوی برندهای ایرانی در فرمت SVG و PNG؛ جستجو، فیلتر و دانلود یکجا.">
+<meta name="description" content="۸۳۴ لوگوی برندهای ایرانی در فرمت SVG و PNG؛ جستجو، مقایسه، ویرایش رنگ و دانلود یکجا.">
+<meta name="theme-color" content="#040f09">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
   :root{
-    --bg:#040f09; --bg2:#06170e; --surface:#0b1f15; --surface2:#0e271b; --glass:rgba(16,44,30,.55);
+    --bg:#040f09; --surface:#0b1f15; --surface2:#0e271b; --glass:rgba(16,44,30,.55);
     --ink:#e8f8ee; --muted:#93b9a1; --line:#1d3d2b; --line2:#2a5a40;
     --g300:#86efac; --g400:#4ade80; --g500:#22c55e; --g600:#16a34a; --g700:#15803d; --g800:#166534;
-    --accent:#4ade80; --accent2:#22d3ee; --tile:linear-gradient(180deg,#eaf8ee,#cdeed9);
-    --radius:20px; color-scheme:dark;
+    --accent:#4ade80; --tile:linear-gradient(180deg,#eaf8ee,#cdeed9); --radius:20px; --fs:1;
+    color-scheme:dark;
   }
+  :root[data-contrast="1"]{--muted:#c8e6d2; --line:#4b7a5e; --line2:#6aa583; --surface:#000; --bg:#000}
+  :root[data-reduce="1"] *{animation:none!important;transition:none!important}
   *{box-sizing:border-box}
+  html{font-size:calc(16px * var(--fs))}
   html,body{max-width:100%;overflow-x:hidden}
-  body{margin:0;font-family:Tahoma,"Segoe UI","Noto Sans Arabic",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;min-height:100vh}
-  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background:radial-gradient(900px 600px at 90% -10%,rgba(34,197,94,.22),transparent 60%),
-               radial-gradient(800px 600px at -10% 40%,rgba(34,211,238,.10),transparent 60%),
-               radial-gradient(900px 700px at 50% 120%,rgba(22,163,74,.18),transparent 60%),var(--bg)}
+  body{margin:0;font-family:Tahoma,"Segoe UI","Noto Sans Arabic",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;min-height:100vh;font-size:1rem}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(900px 600px at 90% -10%,rgba(34,197,94,.22),transparent 60%),radial-gradient(800px 600px at -10% 40%,rgba(34,211,238,.10),transparent 60%),radial-gradient(900px 700px at 50% 120%,rgba(22,163,74,.18),transparent 60%),var(--bg)}
   a{color:inherit}
   img{max-width:100%}
+  button,select,input{font-family:inherit}
   .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
   .hidden{display:none!important}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
-  /* ---------- header ---------- */
-  header.top{position:sticky;top:0;z-index:30;background:rgba(4,15,9,.7);backdrop-filter:saturate(1.5) blur(14px);border-bottom:1px solid var(--line)}
+  /* header */
+  header.top{position:sticky;top:0;z-index:30;background:rgba(4,15,9,.72);backdrop-filter:saturate(1.5) blur(14px);border-bottom:1px solid var(--line)}
   .top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:10px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;color:var(--ink);white-space:nowrap;min-width:0}
-  .brand span.t{overflow:hidden;text-overflow:ellipsis}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;color:var(--ink);white-space:nowrap;min-width:0;cursor:pointer}
+  .brand .t{overflow:hidden;text-overflow:ellipsis}
   .logo-mark{width:36px;height:36px;flex:0 0 36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,#4ade80,#15803d);color:#04150c;font-weight:900;box-shadow:0 0 24px -4px rgba(74,222,128,.7)}
-  nav.links{display:flex;gap:18px;font-size:14px}
-  nav.links a{text-decoration:none;color:var(--muted);transition:color .2s}
-  nav.links a:hover{color:var(--accent)}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:800;font-size:15px;font-family:inherit;background:linear-gradient(135deg,#4ade80,#16a34a);color:#04150c;transition:transform .2s,box-shadow .3s,filter .2s;box-shadow:0 10px 30px -10px rgba(74,222,128,.75);white-space:nowrap;position:relative;overflow:hidden}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(74,222,128,.9);filter:brightness(1.05)}
+  nav.links{display:flex;gap:16px;font-size:.875rem}
+  nav.links a{text-decoration:none;color:var(--muted);transition:color .2s;padding:4px 0;border-bottom:2px solid transparent}
+  nav.links a:hover,nav.links a.on{color:var(--accent);border-color:var(--accent)}
+  .hright{display:flex;align-items:center;gap:8px}
+  .iconbtn{min-width:40px;height:40px;padding:0 10px;border-radius:12px;border:1px solid var(--line2);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:.95rem;transition:.2s}
+  .iconbtn:hover{border-color:var(--g400);color:var(--accent)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:800;font-size:.95rem;background:linear-gradient(135deg,#4ade80,#16a34a);color:#04150c;transition:transform .2s,box-shadow .3s,filter .2s;box-shadow:0 10px 30px -10px rgba(74,222,128,.75);white-space:nowrap;position:relative;overflow:hidden}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(74,222,128,.9)}
+  .btn:active{transform:scale(.97)}
   .btn::after{content:"";position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .6s}
   .btn:hover::after{left:125%}
   .btn.ghost{background:rgba(74,222,128,.06);color:var(--accent);border:1px solid var(--line2);box-shadow:none}
-  .btn.ghost:hover{background:rgba(74,222,128,.14);box-shadow:0 10px 30px -14px rgba(74,222,128,.6)}
-  .btn.sm{padding:8px 14px;font-size:13px}
-  .btn:focus-visible,.card:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .btn.ghost:hover{background:rgba(74,222,128,.14)}
+  .btn.sm{padding:8px 14px;font-size:.8rem}
+  .btn.icon{padding:8px 12px}
+  .btn[aria-pressed="true"]{background:linear-gradient(135deg,#fde047,#eab308);color:#422006}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-  /* ---------- hero ---------- */
-  .hero{position:relative;overflow:hidden;padding:84px 0 110px;text-align:center}
-  .hero .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;animation:float 14s ease-in-out infinite;pointer-events:none}
-  .hero .b1{width:380px;height:380px;background:#16a34a;top:-120px;right:-80px}
-  .hero .b2{width:320px;height:320px;background:#0891b2;bottom:-140px;left:-60px;animation-delay:-5s}
+  /* bottom nav (mobile) */
+  .bnav{display:none}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;padding:76px 0 104px;text-align:center}
+  .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:float 14s ease-in-out infinite;pointer-events:none}
+  .b1{width:380px;height:380px;background:#16a34a;top:-120px;right:-80px}
+  .b2{width:320px;height:320px;background:#0891b2;bottom:-140px;left:-60px;animation-delay:-5s}
   .hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(#4ade80 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(#000,transparent 90%)}
   .hero .wrap{position:relative;z-index:1}
-  .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;font-size:13px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.3);color:var(--accent);margin-bottom:24px;animation:rise .6s both}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;font-size:.8rem;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.3);color:var(--accent);margin-bottom:22px;animation:rise .6s both}
   .pill i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 1.8s infinite}
-  .hero h1{font-size:clamp(30px,5.6vw,60px);line-height:1.25;margin:0 0 18px;font-weight:900;animation:rise .7s .1s both}
+  .hero h1{font-size:clamp(1.9rem,5.4vw,3.5rem);line-height:1.25;margin:0 0 16px;font-weight:900;animation:rise .7s .1s both}
   .hero h1 span{background:linear-gradient(90deg,#86efac,#4ade80,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p{max-width:640px;margin:0 auto 32px;color:var(--muted);font-size:16px;animation:rise .7s .2s both}
-  .hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:rise .7s .3s both}
+  .hero p{max-width:640px;margin:0 auto 28px;color:var(--muted);font-size:1rem;animation:rise .7s .2s both}
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:rise .7s .3s both}
+  .otd{margin:26px auto 0;max-width:460px;display:flex;align-items:center;gap:16px;background:var(--glass);border:1px solid var(--line2);border-radius:20px;padding:12px 16px;backdrop-filter:blur(12px);text-align:right;text-decoration:none;animation:rise .7s .4s both;transition:transform .3s,border-color .3s}
+  .otd:hover{transform:translateY(-3px);border-color:var(--g400)}
+  .otd .thumb{width:76px;height:76px;flex:0 0 76px;border-radius:16px;background:var(--tile);display:grid;place-items:center;padding:10px}
+  .otd small{color:var(--muted);font-size:.75rem;display:block}
+  .otd b{font-size:1.05rem}
 
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:-64px auto 0;position:relative;z-index:2}
-  .stat{background:var(--glass);border:1px solid var(--line2);border-radius:var(--radius);padding:20px 12px;text-align:center;backdrop-filter:blur(12px);animation:rise .6s both}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:-56px auto 0;position:relative;z-index:2}
+  .stat{background:var(--glass);border:1px solid var(--line2);border-radius:var(--radius);padding:18px 12px;text-align:center;backdrop-filter:blur(12px);animation:rise .6s both}
   .stat:nth-child(2){animation-delay:.08s}.stat:nth-child(3){animation-delay:.16s}.stat:nth-child(4){animation-delay:.24s}
-  .stat b{display:block;font-size:30px;color:var(--accent);font-weight:900}
-  .stat small{color:var(--muted);font-size:13px}
+  .stat b{display:block;font-size:1.7rem;color:var(--accent);font-weight:900}
+  .stat small{color:var(--muted);font-size:.8rem}
 
-  section{padding:60px 0}
-  h2.sec{font-size:26px;margin:0 0 6px;color:var(--ink);font-weight:900}
-  p.sec-sub{margin:0 0 22px;color:var(--muted)}
+  section.view{padding:52px 0}
+  h2.sec{font-size:1.6rem;margin:0 0 6px;font-weight:900}
+  p.sec-sub{margin:0 0 20px;color:var(--muted)}
 
-  /* ---------- toolbar ---------- */
-  .toolbar{position:sticky;top:64px;z-index:20;background:rgba(4,15,9,.85);backdrop-filter:blur(12px);padding:12px 0 14px;margin:0 -16px;padding-left:16px;padding-right:16px;border-bottom:1px solid var(--line)}
+  /* toolbar */
+  .toolbar{position:sticky;top:64px;z-index:20;background:rgba(4,15,9,.88);backdrop-filter:blur(12px);padding:12px 16px 14px;border-bottom:1px solid var(--line);margin:0 -16px}
   .tb{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;max-width:1200px;margin:0 auto}
   .search{position:relative;min-width:0}
-  .search input{width:100%;padding:13px 46px 13px 16px;border-radius:14px;border:1px solid var(--line2);font:inherit;font-size:15px;background:var(--surface);color:var(--ink);outline:none;transition:border .2s,box-shadow .2s}
+  .search input{width:100%;padding:13px 46px 13px 16px;border-radius:14px;border:1px solid var(--line2);font-size:.95rem;background:var(--surface);color:var(--ink);outline:none;transition:border .2s,box-shadow .2s}
   .search input::placeholder{color:#5f8a6e}
   .search input:focus{border-color:var(--g500);box-shadow:0 0 0 4px rgba(34,197,94,.18)}
   .search svg{position:absolute;right:15px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--accent)}
-  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;align-items:center;max-width:1200px;margin-left:auto;margin-right:auto}
-  select{padding:11px 14px;border-radius:14px;border:1px solid var(--line2);background:var(--surface);font:inherit;font-size:14px;color:var(--ink);outline:none;cursor:pointer;max-width:100%}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:10px auto 0;align-items:center;max-width:1200px}
+  select{padding:10px 12px;border-radius:14px;border:1px solid var(--line2);background:var(--surface);font-size:.875rem;color:var(--ink);outline:none;cursor:pointer;max-width:100%}
   select option{background:var(--surface)}
   .seg{display:inline-flex;background:var(--surface);border:1px solid var(--line2);border-radius:14px;padding:4px;max-width:100%}
-  .seg button{border:0;background:transparent;padding:8px 14px;border-radius:10px;font:inherit;font-size:14px;cursor:pointer;color:var(--muted);font-weight:700;white-space:nowrap;transition:.2s}
-  .seg button.on{background:linear-gradient(135deg,#4ade80,#16a34a);color:#04150c;box-shadow:0 6px 18px -8px rgba(74,222,128,.9)}
-  .count{color:var(--muted);font-size:14px;margin-inline-start:auto;white-space:nowrap}
+  .seg button{border:0;background:transparent;padding:7px 12px;border-radius:10px;font-size:.85rem;cursor:pointer;color:var(--muted);font-weight:700;white-space:nowrap;transition:.2s}
+  .seg button.on{background:linear-gradient(135deg,#4ade80,#16a34a);color:#04150c}
+  .range{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:.8rem}
+  .range input{accent-color:var(--g500)}
+  .count{color:var(--muted);font-size:.875rem;margin-inline-start:auto;white-space:nowrap}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;max-width:1200px;margin:8px auto 0}
+  .fchip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3);color:#67e8f9;font-size:.78rem;cursor:pointer}
+  .fchip:hover{background:rgba(34,211,238,.2)}
+  .hist{display:flex;gap:6px;flex-wrap:wrap;max-width:1200px;margin:8px auto 0;font-size:.78rem;color:var(--muted);align-items:center}
+  .hist button{background:transparent;border:1px dashed var(--line2);color:var(--muted);border-radius:999px;padding:3px 10px;cursor:pointer;font-size:.78rem}
+  .hist button:hover{color:var(--accent);border-color:var(--g400)}
 
-  /* ---------- grid ---------- */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin-top:18px}
-  .card{display:flex;flex-direction:column;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;position:relative;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s;animation:rise .5s both}
-  .card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,transparent,rgba(74,222,128,.7),transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s}
-  .card:hover{transform:translateY(-5px);box-shadow:0 26px 50px -24px rgba(74,222,128,.55);border-color:var(--line2)}
-  .card:hover::before{opacity:1}
-  .thumb{height:118px;display:grid;place-items:center;padding:18px;background:var(--tile);border-bottom:1px solid var(--line);transition:background .3s}
-  .thumb img{max-width:100%;max-height:100%;object-fit:contain;display:block;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+  /* grid & cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--cw,170px),1fr));gap:14px;margin-top:18px}
+  .grid.list{grid-template-columns:minmax(0,1fr)}
+  .card{position:relative;display:flex;flex-direction:column;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s;animation:rise .5s both;outline:none}
+  .card:hover,.card:focus-visible{transform:translateY(-5px);box-shadow:0 26px 50px -24px rgba(74,222,128,.55);border-color:var(--line2)}
+  .card .thumb{height:118px;display:grid;place-items:center;padding:18px;background:var(--tile);border-bottom:1px solid var(--line);position:relative}
+  .card .thumb img{max-width:100%;max-height:100%;object-fit:contain;display:block;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
   .card:hover .thumb img{transform:scale(1.08) rotate(-1deg)}
-  .ph{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:#bff0d0;color:#14532d;font-weight:900;font-size:22px}
+  .thumb.sk::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);background-size:200% 100%;animation:shimmer 1.2s infinite}
+  .grid.list .card{flex-direction:row;align-items:center;transform:none!important}
+  .grid.list .thumb{height:72px;width:96px;flex:0 0 96px;border-bottom:0;border-inline-end:1px solid var(--line);padding:10px}
+  .grid.list .meta{flex:1;padding:0 14px}
+  .ph{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:#bff0d0;color:#14532d;font-weight:900;font-size:1.4rem}
   .meta{padding:12px 14px 14px;min-width:0}
-  .meta h3{margin:0;font-size:15px;color:var(--ink);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .meta h3{margin:0;font-size:.95rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .tags{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
-  .tag{font-size:11px;padding:2px 9px;border-radius:999px;background:rgba(74,222,128,.14);color:var(--accent);font-weight:700}
+  .tag{font-size:.7rem;padding:2px 9px;border-radius:999px;background:rgba(74,222,128,.14);color:var(--accent);font-weight:700}
   .tag.m{background:rgba(148,163,184,.18);color:#cbd5e1}
   .tag.cat{background:rgba(34,211,238,.12);color:#67e8f9;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .more{text-align:center;margin:28px 0 0}
-  .empty{display:none;text-align:center;padding:60px 0;color:var(--muted)}
+  .cbtns{position:absolute;top:8px;left:8px;display:flex;gap:6px;z-index:2}
+  .cbtn{width:30px;height:30px;border-radius:50%;border:1px solid var(--line2);background:rgba(4,15,9,.7);color:var(--ink);cursor:pointer;font-size:.85rem;display:grid;place-items:center;transition:.2s}
+  .cbtn:hover{border-color:var(--g400)}
+  .cbtn[aria-pressed="true"]{background:#fde047;color:#422006;border-color:#fde047}
+  .sentinel{height:1px}
+  .more{text-align:center;margin:26px 0 0}
+  .empty{display:none;text-align:center;padding:50px 16px;color:var(--muted)}
   .empty.show{display:block}
+  .empty .sugg{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
 
-  /* ---------- detail page ---------- */
-  #detail{min-height:70vh;max-width:1200px;margin:0 auto;padding:0 16px 40px}
-  .crumbs{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:26px 0 8px;font-size:14px;color:var(--muted);animation:rise .5s both}
+  /* detail */
+  .crumbs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:22px 0 8px;font-size:.875rem;color:var(--muted)}
   .crumbs a{color:var(--accent);text-decoration:none;font-weight:700}
   .crumbs a:hover{text-decoration:underline}
   .crumbs .sep{opacity:.5}
-  .dhero{position:relative;border-radius:30px;overflow:hidden;border:1px solid var(--line2);background:linear-gradient(160deg,rgba(22,101,52,.45),rgba(4,15,9,.9) 60%);padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,50px);align-items:center;animation:rise .7s both}
+  .dhero{position:relative;border-radius:30px;overflow:hidden;border:1px solid var(--line2);background:linear-gradient(160deg,rgba(22,101,52,.45),rgba(4,15,9,.9) 60%);padding:clamp(24px,5vw,52px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);align-items:center;animation:rise .7s both}
   .dhero::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(74,222,128,.35),transparent 65%);top:-200px;left:-160px;animation:float 12s ease-in-out infinite;pointer-events:none}
   .dhero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%);background-size:250% 100%;animation:sheen 6s linear infinite}
-  .stage{position:relative;display:grid;place-items:center;aspect-ratio:1/1;max-width:420px;width:100%;margin:0 auto}
+  .stage{position:relative;display:grid;place-items:center;aspect-ratio:1/1;max-width:420px;width:100%;margin:0 auto;z-index:1}
   .ring{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(74,222,128,.35);animation:spin 26s linear infinite}
   .ring.r2{inset:9%;border-style:solid;border-color:rgba(34,211,238,.25);animation-duration:18s;animation-direction:reverse}
   .ring.r3{inset:20%;border-color:rgba(74,222,128,.18);animation-duration:12s}
-  .tile{position:relative;width:62%;aspect-ratio:1/1;border-radius:32px;background:var(--tile);display:grid;place-items:center;padding:12%;box-shadow:0 0 0 1px rgba(255,255,255,.2) inset,0 40px 80px -30px rgba(74,222,128,.7),0 0 120px -20px rgba(74,222,128,.5);animation:floatY 5s ease-in-out infinite}
-  .tile img{width:100%;height:100%;object-fit:contain;transition:transform .5s}
-  .tile:hover img{transform:scale(1.06)}
-  .tile .ph{width:100%;height:100%;border-radius:28px;font-size:72px;background:transparent;color:#14532d}
+  .tile{position:relative;width:62%;aspect-ratio:1/1;border-radius:32px;background:var(--tile);display:grid;place-items:center;padding:12%;box-shadow:0 40px 80px -30px rgba(74,222,128,.7),0 0 120px -20px rgba(74,222,128,.5);animation:floatY 5s ease-in-out infinite;overflow:hidden;cursor:zoom-in;transition:background .4s}
   .tile.dark{background:linear-gradient(160deg,#14532d,#052e16)}
-  .dinfo h1{font-size:clamp(28px,4.2vw,46px);line-height:1.2;margin:0 0 8px;font-weight:900;background:linear-gradient(90deg,#fff,#86efac);-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .7s .1s both}
-  .dinfo .lead{color:var(--muted);margin:0 0 20px;font-size:16px;animation:rise .7s .2s both}
-  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;animation:rise .7s .25s both}
-  .chip{padding:6px 14px;border-radius:999px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.28);font-size:13px;color:var(--accent);font-weight:700}
+  .tile img{width:100%;height:100%;object-fit:contain;transition:transform .35s;transform-origin:50% 50%}
+  .tile.zoomed img{transform:scale(2.2)}
+  .tile .ph{width:100%;height:100%;border-radius:28px;font-size:4.5rem;background:transparent;color:#14532d}
+  .dinfo h1{font-size:clamp(1.8rem,4.2vw,2.9rem);line-height:1.2;margin:0 0 8px;font-weight:900;background:linear-gradient(90deg,#fff,#86efac);-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .7s .1s both}
+  .dinfo .lead{color:var(--muted);margin:0 0 18px;animation:rise .7s .2s both}
+  .dchips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;animation:rise .7s .25s both}
+  .chip{padding:5px 13px;border-radius:999px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.28);font-size:.8rem;color:var(--accent);font-weight:700;text-decoration:none}
   .chip.cy{background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3);color:#67e8f9}
   .chip.gr{background:rgba(148,163,184,.12);border-color:rgba(148,163,184,.3);color:#cbd5e1}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
   .dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;animation:rise .7s .3s both}
-  .dl-grid .btn{padding:16px;font-size:16px;border-radius:18px;flex-direction:column;gap:2px}
-  .dl-grid .btn small{font-weight:600;font-size:12px;opacity:.75}
-  .fine{margin:14px 0 0;color:var(--muted);font-size:13px}
-
-  .panels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
-  .panel{background:var(--glass);border:1px solid var(--line2);border-radius:var(--radius);padding:18px;backdrop-filter:blur(10px);animation:rise .6s both;transition:transform .3s,border-color .3s}
-  .panel:hover{transform:translateY(-3px);border-color:rgba(74,222,128,.5)}
-  .panel:nth-child(2){animation-delay:.1s}.panel:nth-child(3){animation-delay:.2s}
-  .panel h4{margin:0 0 12px;font-size:14px;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:8px}
+  .dl-grid .btn{padding:14px;font-size:1rem;border-radius:18px;flex-direction:column;gap:2px}
+  .dl-grid .btn small{font-weight:600;font-size:.75rem;opacity:.75}
+  .fmtrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 0}
+  .fine{margin:12px 0 0;color:var(--muted);font-size:.8rem}
+  .panels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+  .panels.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .panel{background:var(--glass);border:1px solid var(--line2);border-radius:var(--radius);padding:18px;backdrop-filter:blur(10px);animation:rise .6s both;min-width:0}
+  .panel h4{margin:0 0 12px;font-size:.9rem;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:8px}
   .panel h4 i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
   .sizes{display:flex;align-items:flex-end;gap:16px;justify-content:center;min-height:110px}
-  .sizes div{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
-  .sizes img{display:block}
-  .specs dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:14px}
+  .sizes div{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.75rem;color:var(--muted)}
+  .specs dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 14px;font-size:.875rem}
   .specs dt{color:var(--muted)}
   .specs dd{margin:0;direction:ltr;text-align:right;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+  .tabs button{border:1px solid var(--line2);background:transparent;color:var(--muted);border-radius:10px;padding:5px 10px;cursor:pointer;font-size:.8rem;font-weight:700}
+  .tabs button.on{background:rgba(74,222,128,.15);color:var(--accent);border-color:var(--g500)}
   .codebox{position:relative}
-  .codebox pre{margin-top:0}
-  .codebox pre{margin:0;background:#021109;border:1px solid var(--line);border-radius:14px;padding:14px;font-size:12.5px;direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-all;color:#bbf7d0}
-  .copy{display:block;margin:0 0 10px auto;font-size:12px;padding:6px 10px;border-radius:10px;border:1px solid var(--line2);background:var(--surface);color:var(--accent);cursor:pointer;font-family:inherit;font-weight:700}
-  .copy:hover{background:rgba(74,222,128,.12)}
+  .codebox pre{margin:0;background:#021109;border:1px solid var(--line);border-radius:14px;padding:12px;font-size:.78rem;direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-all;color:#bbf7d0}
+  .copy{display:block;margin:0 0 8px auto;font-size:.75rem;padding:5px 10px;border-radius:10px;border:1px solid var(--line2);background:var(--surface);color:var(--accent);cursor:pointer;font-weight:700}
+  .palette{display:flex;gap:8px;flex-wrap:wrap}
+  .sw{width:58px;cursor:pointer;text-align:center;font-size:.7rem;color:var(--muted);background:none;border:0;padding:0}
+  .sw i{display:block;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.15);margin-bottom:4px;transition:transform .2s}
+  .sw:hover i{transform:translateY(-2px)}
+  .recolor{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+  .recolor input[type=color]{width:52px;height:40px;border:0;background:none;padding:0;cursor:pointer}
+  .recolor-prev{height:120px;border-radius:14px;background:var(--tile);display:grid;place-items:center;padding:14px}
+  .recolor-prev img{max-height:100%;max-width:100%}
+  .pager{display:flex;justify-content:space-between;gap:10px;margin-top:22px;flex-wrap:wrap}
+  .related{margin-top:44px}
+  .related h3{font-size:1.2rem;margin:0 0 12px}
 
-  .related{margin-top:50px}
-  .related h3{font-size:20px;margin:0 0 14px;color:var(--ink)}
+  /* compare / favorites / stats / game / changelog / 404 */
+  .cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+  .cmp .col{background:var(--glass);border:1px solid var(--line2);border-radius:var(--radius);overflow:hidden;animation:rise .5s both}
+  .cmp .col .thumb{height:170px;display:grid;place-items:center;padding:20px;background:var(--tile)}
+  .cmp .col .thumb img{max-width:100%;max-height:100%}
+  .cmp .col .bd{padding:14px}
+  .cmp .col h3{margin:0 0 6px;font-size:1.05rem}
+  .cmp .col .btn{margin-top:8px;width:100%}
+  .bars{display:grid;gap:10px}
+  .bar{display:grid;grid-template-columns:150px minmax(0,1fr) 46px;gap:10px;align-items:center;font-size:.875rem}
+  .bar .track{height:12px;border-radius:999px;background:var(--surface2);overflow:hidden;border:1px solid var(--line)}
+  .bar .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#22c55e,#4ade80,#67e8f9);width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+  .bar span:last-child{color:var(--muted);text-align:left;direction:ltr}
+  .gamebox{max-width:520px;margin:0 auto;background:var(--glass);border:1px solid var(--line2);border-radius:26px;padding:26px;text-align:center;backdrop-filter:blur(12px)}
+  .gamebox .qimg{height:170px;border-radius:20px;background:var(--tile);display:grid;place-items:center;padding:18px;margin-bottom:18px}
+  .gamebox .qimg img{max-height:100%;max-width:100%;animation:pop .5s both}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .opts button{padding:14px;border-radius:14px;border:1px solid var(--line2);background:var(--surface);color:var(--ink);cursor:pointer;font-weight:700;transition:.2s}
+  .opts button:hover{border-color:var(--g400);transform:translateY(-2px)}
+  .opts button.ok{background:rgba(34,197,94,.3);border-color:var(--g400)}
+  .opts button.bad{background:rgba(239,68,68,.25);border-color:#f87171}
+  .score{margin-top:14px;color:var(--muted)}
+  .logroll{display:grid;gap:14px}
+  .entry{background:var(--glass);border:1px solid var(--line2);border-radius:var(--radius);padding:18px 20px}
+  .entry b{color:var(--accent)}
+  .nf{text-align:center;padding:60px 0}
+  .nf .big{font-size:clamp(4rem,12vw,8rem);font-weight:900;background:linear-gradient(90deg,#86efac,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
 
-  /* ---------- band / steps / footer ---------- */
-  .band{border-radius:28px;padding:40px 32px;color:#04150c;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:linear-gradient(120deg,#22c55e,#4ade80 55%,#a7f3d0);box-shadow:0 30px 60px -30px rgba(74,222,128,.7);position:relative;overflow:hidden}
-  .band h2{margin:0 0 6px;font-size:24px;font-weight:900}
+  /* band / steps / footer */
+  .band{border-radius:28px;padding:38px 30px;color:#04150c;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:linear-gradient(120deg,#22c55e,#4ade80 55%,#a7f3d0);box-shadow:0 30px 60px -30px rgba(74,222,128,.7)}
+  .band h2{margin:0 0 6px;font-size:1.5rem;font-weight:900}
   .band p{margin:0;color:#14532d}
   .band .btn{background:#04150c;color:#4ade80;box-shadow:none}
-  .band .btn:hover{background:#0b2317}
-  .formats{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-  .formats span{background:rgba(4,21,12,.12);border:1px solid rgba(4,21,12,.25);padding:4px 12px;border-radius:999px;font-size:13px;font-weight:700}
-
+  .formats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .formats span{background:rgba(4,21,12,.12);border:1px solid rgba(4,21,12,.25);padding:4px 12px;border-radius:999px;font-size:.8rem;font-weight:700}
   .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-  .steps>*{min-width:0}
   .step{background:var(--glass);border:1px solid var(--line2);border-radius:var(--radius);padding:22px;backdrop-filter:blur(10px)}
-  .step .n{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-weight:900;color:#04150c;background:linear-gradient(135deg,#4ade80,#15803d);margin-bottom:12px;box-shadow:0 0 22px -4px rgba(74,222,128,.7)}
-  .step h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
-  .step p{margin:0;color:var(--muted);font-size:14px}
-  pre.code{background:#021109;color:#bbf7d0;border:1px solid var(--line);border-radius:14px;padding:14px 16px;overflow-x:auto;direction:ltr;text-align:left;font-size:13px;margin:0;max-width:100%;white-space:pre}
-
-  footer{border-top:1px solid var(--line);padding:36px 0;margin-top:60px;background:rgba(2,17,9,.6)}
-  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+  .step .n{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-weight:900;color:#04150c;background:linear-gradient(135deg,#4ade80,#15803d);margin-bottom:12px}
+  .step h4{margin:0 0 6px;color:var(--accent)}
+  .step p{margin:0;color:var(--muted);font-size:.9rem}
+  pre.code{background:#021109;color:#bbf7d0;border:1px solid var(--line);border-radius:14px;padding:14px;overflow-x:auto;direction:ltr;text-align:left;font-size:.8rem;margin:0;white-space:pre}
+  footer{border-top:1px solid var(--line);padding:34px 0 110px;margin-top:50px;background:rgba(2,17,9,.6)}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:.875rem;color:var(--muted)}
   footer a{color:var(--accent)}
 
-  .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,140px);background:linear-gradient(135deg,#4ade80,#16a34a);color:#04150c;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:800;transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:200;white-space:nowrap;box-shadow:0 14px 40px -10px rgba(74,222,128,.8)}
+  /* overlays */
+  .overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px}
+  .overlay.open{display:flex}
+  .tour{background:var(--surface);color:var(--ink);border:1px solid var(--line2);border-radius:24px;max-width:460px;width:100%;padding:26px;animation:pop .3s both;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+  .tour h3{margin:0 0 8px;color:var(--accent);font-size:1.25rem}
+  .tour p{margin:0 0 16px;color:var(--muted)}
+  .tour .row{display:flex;gap:8px;justify-content:space-between;align-items:center}
+  .dots{display:flex;gap:6px}
+  .dots i{width:8px;height:8px;border-radius:50%;background:var(--line2)}
+  .dots i.on{background:var(--accent)}
+  .toast{position:fixed;bottom:86px;left:50%;transform:translate(-50%,140px);background:linear-gradient(135deg,#4ade80,#16a34a);color:#04150c;padding:12px 22px;border-radius:999px;font-size:.9rem;font-weight:800;transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:200;white-space:nowrap;box-shadow:0 14px 40px -10px rgba(74,222,128,.8)}
   .toast.show{transform:translate(-50%,0)}
+  .progress{position:fixed;top:0;right:0;height:3px;width:0;background:linear-gradient(90deg,#22d3ee,#4ade80);z-index:60}
+  .totop{position:fixed;left:16px;bottom:90px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line2);background:var(--surface);color:var(--accent);cursor:pointer;z-index:40;opacity:0;transform:translateY(10px);pointer-events:none;transition:.3s;font-size:1.1rem}
+  .totop.show{opacity:1;transform:none;pointer-events:auto}
+  .printonly{display:none}
 
-  /* ---------- animations ---------- */
+  /* animations */
   @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-24px)}}
   @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
   @keyframes spin{to{transform:rotate(360deg)}}
   @keyframes sheen{to{background-position:-250% 0}}
-  .page{animation:rise .45s both}
+  @keyframes shimmer{to{background-position:-200% 0}}
+  @keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+  .view{animation:rise .45s both}
 
-  /* ---------- responsive ---------- */
+  /* responsive */
   @media (max-width:1024px){ .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))} }
   @media (max-width:900px){
     nav.links{display:none}
     .dhero{grid-template-columns:minmax(0,1fr)}
     .stage{max-width:300px}
-    .panels{grid-template-columns:minmax(0,1fr)}
+    .panels,.panels.two{grid-template-columns:minmax(0,1fr)}
     .steps{grid-template-columns:minmax(0,1fr)}
+    .toolbar{position:static;margin:0}
   }
   @media (max-width:640px){
     .top .wrap{height:58px}
-    .brand span.t{font-size:14px}
-    .hero{padding:56px 0 90px}
-    .hero p{font-size:14px}
+    .brand .t{font-size:.875rem}
+    .hero{padding:52px 0 88px}
+    .hero p{font-size:.9rem}
     .stats{grid-template-columns:repeat(2,1fr);gap:10px}
-    .stat b{font-size:24px}
-    .tb{grid-template-columns:1fr}
+    .stat b{font-size:1.4rem}
+    .tb{grid-template-columns:minmax(0,1fr)}
     .count{margin-inline-start:0;width:100%}
     .filters select{flex:1 1 100%}
     .seg{flex:1 1 auto}
-    .seg button{flex:1;padding:8px 6px}
+    .seg button{flex:1;padding:7px 4px}
     .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    .thumb{height:96px}
-    .band{padding:28px 22px}
+    .card .thumb{height:96px}
+    .band{padding:26px 20px}
     .dl-grid{grid-template-columns:minmax(0,1fr)}
     .dhero{border-radius:24px}
-    .toolbar{position:static}
+    .bar{grid-template-columns:96px minmax(0,1fr) 40px}
+    .opts{grid-template-columns:minmax(0,1fr)}
+    .bnav{display:flex;position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:50;background:rgba(11,31,21,.92);backdrop-filter:blur(14px);border:1px solid var(--line2);border-radius:999px;padding:6px;gap:4px;box-shadow:0 14px 40px -12px rgba(0,0,0,.7)}
+    .bnav a{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:62px;padding:6px 8px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:.7rem;font-weight:700}
+    .bnav a.on{background:rgba(74,222,128,.16);color:var(--accent)}
+    .bnav a span{font-size:1.05rem;line-height:1.2}
   }
   @media (max-width:360px){
-    .brand span.t{display:none}
+    .brand .t{display:none}
     .wrap{padding:0 12px}
     .grid{gap:8px}
   }
-  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+  @media print{
+    body{background:#fff;color:#000}
+    body::before,header,footer,.bnav,.toast,.overlay,.progress,.totop,#app>*{display:none!important}
+    .printonly{display:block!important}
+    .printonly .pk{padding:24px;color:#000}
+    .printonly img{max-width:220px;max-height:220px}
+  }
 </style>
 </head>
 <body>
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#/">
+    <a class="brand" href="#/" aria-label="صفحه‌ی اصلی">
       <span class="logo-mark">ع</span>
       <span class="t">مخزن لوگوهای ایرانی</span>
     </a>
-    <nav class="links">
-      <a href="#/">گالری</a>
-      <a href="#download">دانلود</a>
-      <a href="#usage">راهنما</a>
+    <nav class="links" aria-label="ناوبری اصلی">
+      <a href="#/" data-nav="gallery">گالری</a>
+      <a href="#/favorites" data-nav="favorites">علاقه‌مندی‌ها</a>
+      <a href="#/compare" data-nav="compare">مقایسه</a>
+      <a href="#/stats" data-nav="stats">آمار</a>
+      <a href="#/game" data-nav="game">بازی</a>
+      <a href="#/changelog" data-nav="changelog">تغییرات</a>
     </nav>
-    <a class="btn sm" href="download/iran-brand-logos-all-formats.zip" download>ZIP همه</a>
+    <div class="hright">
+      <button class="iconbtn" id="fsDown" title="کوچک‌تر کردن متن" aria-label="کوچک‌تر کردن متن">A−</button>
+      <button class="iconbtn" id="fsUp" title="بزرگ‌تر کردن متن" aria-label="بزرگ‌تر کردن متن">A+</button>
+      <button class="iconbtn" id="contrastBtn" title="کنتراست بالا" aria-label="کنتراست بالا">◐</button>
+      <button class="iconbtn" id="motionBtn" title="کاهش انیمیشن" aria-label="کاهش انیمیشن">⏸</button>
+      <button class="iconbtn" id="helpBtn" title="راهنمای سریع" aria-label="راهنمای سریع">?</button>
+      <a class="btn sm" href="download/iran-brand-logos-all-formats.zip" download>ZIP همه</a>
+    </div>
   </div>
 </header>
 
+<nav class="bnav" aria-label="ناوبری موبایل">
+  <a href="#/" data-nav="gallery"><span>🏠</span>گالری</a>
+  <a href="#/favorites" data-nav="favorites"><span>⭐</span>علاقه‌ها</a>
+  <a href="#/compare" data-nav="compare"><span>⚖️</span>مقایسه</a>
+  <a href="#/game" data-nav="game"><span>🎮</span>بازی</a>
+</nav>
+
 <main id="app">
 
-  <!-- GALLERY VIEW -->
-  <div id="gallery">
+  <!-- GALLERY -->
+  <div id="v-gallery" class="view-wrap">
     <div class="hero">
       <div class="blob b1"></div><div class="blob b2"></div>
       <div class="wrap">
@@ -251,8 +363,10 @@
         <p>برندهای ایرانی در ۲۱ دسته؛ هر لوگو در نسخه‌ی رنگی و تک‌رنگ، با فرمت وکتوری SVG و تصویری PNG.</p>
         <div class="cta">
           <a class="btn" href="#logos">مرور لوگوها</a>
+          <button class="btn ghost" id="randomBtn" type="button">🎲 لوگوی تصادفی</button>
           <a class="btn ghost" href="download/iran-brand-logos-all-formats.zip" download>دانلود کامل</a>
         </div>
+        <a class="otd" id="otd" href="#/" aria-label="لوگوی امروز"></a>
       </div>
     </div>
 
@@ -265,36 +379,55 @@
       </div>
     </div>
 
-    <section id="logos" style="padding-top:50px">
-      <div class="wrap">
-        <h2 class="sec">گالری لوگوها</h2>
-        <p class="sec-sub">روی هر لوگو بزنید تا صفحه‌ی اختصاصی آن با اطلاعات و دانلود باز شود.</p>
+    <section id="logos" class="view" style="padding-top:44px">
+      <div class="wrap"><h2 class="sec">گالری لوگوها</h2>
+        <p class="sec-sub">روی هر لوگو بزنید تا صفحه‌ی اختصاصی آن باز شود. کلید <kbd>/</kbd> میانبر جستجو است.</p>
       </div>
       <div class="toolbar" id="toolbar">
         <div class="tb">
           <label class="search">
-            <input id="q" type="search" placeholder="جستجوی نام برند یا دسته…" autocomplete="off">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <span class="sr">جستجو</span>
+            <input id="q" type="search" list="qlist" placeholder="جستجوی نام برند یا دسته…" autocomplete="off">
+            <datalist id="qlist"></datalist>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           </label>
           <span class="count" id="count"></span>
         </div>
         <div class="filters">
           <select id="cat" aria-label="دسته"></select>
-          <div class="seg" id="variant">
+          <select id="sort" aria-label="مرتب‌سازی">
+            <option value="name">نام (الفبا)</option>
+            <option value="cat">دسته</option>
+            <option value="var">نسخه</option>
+          </select>
+          <div class="seg" id="variant" role="group" aria-label="نسخه">
             <button data-v="all" class="on">همه</button>
             <button data-v="color">رنگی</button>
             <button data-v="mono">تک‌رنگ</button>
           </div>
+          <div class="seg" id="layout" role="group" aria-label="نمایش">
+            <button data-l="grid" class="on" title="شبکه‌ای">▦</button>
+            <button data-l="list" title="فهرستی">☰</button>
+          </div>
+          <label class="range" title="اندازه‌ی کارت‌ها">اندازه
+            <input id="size" type="range" min="130" max="260" value="170">
+          </label>
         </div>
+        <div class="chips" id="chips"></div>
+        <div class="hist" id="hist"></div>
       </div>
       <div class="wrap">
         <div class="grid" id="grid"></div>
+        <div class="sentinel" id="sentinel"></div>
         <div class="more"><button class="btn ghost" id="moreBtn" hidden>نمایش بیشتر</button></div>
-        <div class="empty" id="empty">موردی پیدا نشد. عبارت دیگری را امتحان کنید.</div>
+        <div class="empty" id="empty">
+          <div>موردی پیدا نشد.</div>
+          <div class="sugg" id="sugg"></div>
+        </div>
       </div>
     </section>
 
-    <section id="download" style="padding-top:0">
+    <section id="download" class="view" style="padding-top:0">
       <div class="wrap">
         <div class="band">
           <div>
@@ -302,12 +435,12 @@
             <p>فایل ZIP شامل SVG، PNG (۵۱۲px با پس‌زمینه‌ی شفاف)، فهرست CSV و لایسنس.</p>
             <div class="formats"><span>SVG</span><span>PNG 512px</span><span>CSV</span><span>MIT</span></div>
           </div>
-          <a class="btn" href="download/iran-brand-logos-all-formats.zip" download>دانلود ZIP (حدود ۶۹ MB)</a>
+          <a class="btn" href="download/iran-brand-logos-all-formats.zip" download>دانلود ZIP (حدود ۲۵ MB)</a>
         </div>
       </div>
     </section>
 
-    <section id="usage" style="padding-top:0">
+    <section id="usage" class="view" style="padding-top:0">
       <div class="wrap">
         <h2 class="sec">راهنمای استفاده</h2>
         <p class="sec-sub">سه قدم تا قرار دادن لوگو در پروژه‌ی شما.</p>
@@ -321,8 +454,87 @@
     </section>
   </div>
 
-  <!-- DETAIL VIEW (one page per logo) -->
-  <div id="detail" class="hidden"></div>
+  <!-- LOGO DETAIL -->
+  <div id="v-logo" class="hidden"></div>
+
+  <!-- FAVORITES -->
+  <div id="v-favorites" class="hidden">
+    <section class="view wrap" style="padding-top:40px">
+      <h2 class="sec">علاقه‌مندی‌ها</h2>
+      <p class="sec-sub">لوگوهایی که با ⭐ ذخیره کرده‌اید؛ فقط روی همین مرورگر.</p>
+      <div class="cbtns" style="position:static;margin-bottom:12px"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+        <button class="btn ghost sm" id="favExport" type="button">دانلود فهرست (JSON)</button>
+        <button class="btn ghost sm" id="favClear" type="button">پاک کردن همه</button>
+      </div>
+      <div class="grid" id="favGrid"></div>
+      <div class="empty" id="favEmpty" style="display:none">هنوز چیزی ذخیره نکرده‌اید. روی ⭐ کنار هر لوگو بزنید.</div>
+    </section>
+  </div>
+
+  <!-- COMPARE -->
+  <div id="v-compare" class="hidden">
+    <section class="view wrap" style="padding-top:40px">
+      <h2 class="sec">مقایسه‌ی لوگوها</h2>
+      <p class="sec-sub">تا ۴ لوگو را کنار هم ببینید. از کارت‌ها یا صفحه‌ی لوگو با دکمه‌ی ⚖️ اضافه کنید.</p>
+      <div class="cmp" id="cmpGrid"></div>
+      <div class="empty" id="cmpEmpty" style="display:none">هیچ لوگویی برای مقایسه انتخاب نشده است.</div>
+      <div style="margin-top:14px"><button class="btn ghost sm" id="cmpClear" type="button">خالی کردن مقایسه</button></div>
+    </section>
+  </div>
+
+  <!-- STATS -->
+  <div id="v-stats" class="hidden">
+    <section class="view wrap" style="padding-top:40px">
+      <h2 class="sec">آمار مخزن</h2>
+      <p class="sec-sub">تعداد لوگوها در هر دسته و نسخه، و دانلودهای شما روی همین مرورگر.</p>
+      <div class="panels two">
+        <div class="panel"><h4><i></i>تعداد در هر دسته</h4><div class="bars" id="barsCat"></div></div>
+        <div class="panel"><h4><i></i>نسخه‌ها و دانلودهای شما</h4><div class="bars" id="barsVar"></div>
+          <p class="fine" id="dlTotal"></p></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- GAME -->
+  <div id="v-game" class="hidden">
+    <section class="view wrap" style="padding-top:40px">
+      <h2 class="sec">حدس بزن کدام برند؟</h2>
+      <p class="sec-sub">لوگو را ببین و نام درست برند را انتخاب کن. ۱۰ سؤال.</p>
+      <div class="gamebox">
+        <div class="qimg"><img id="gImg" alt=""></div>
+        <div class="opts" id="gOpts"></div>
+        <div class="score" id="gScore"></div>
+        <button class="btn ghost sm" id="gNext" type="button" style="margin-top:12px" hidden>سؤال بعدی</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- CHANGELOG -->
+  <div id="v-changelog" class="hidden">
+    <section class="view wrap" style="padding-top:40px">
+      <h2 class="sec">تغییرات</h2>
+      <p class="sec-sub">تاریخچه‌ی به‌روزرسانی‌های مخزن.</p>
+      <div class="logroll">
+        <div class="entry"><b>نسخه‌ی ۲.۰</b> · ۱۴۰۵/۰۸/۰۷<ul style="margin:8px 0 0;padding-inline-start:20px;color:var(--muted)">
+          <li>صفحه‌ی اختصاصی برای هر لوگو با انیمیشن‌ها، زوم، و ویرایش رنگ</li>
+          <li>مقایسه‌ی لوگوها، علاقه‌مندی‌ها، آمار و بازی حدس زدن برند</li>
+          <li>حالت تیره، PWA برای کار آفلاین، و کنترل اندازه‌ی متن</li>
+          <li>بازسازی همه‌ی PNGها با رندر صحیح رنگ و شفافیت</li></ul></div>
+        <div class="entry"><b>نسخه‌ی ۱.۰</b> · اولین انتشار با ۸۳۴ لوگو و ZIP کامل</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 404 -->
+  <div id="v-404" class="hidden">
+    <section class="view wrap nf">
+      <div class="big">۴۰۴</div>
+      <p class="sec-sub" style="margin-top:10px">این صفحه پیدا نشد. شاید این لوگو کمک کند:</p>
+      <div class="qimg" style="height:140px;width:140px;margin:0 auto 16px;border-radius:24px;background:var(--tile);display:grid;place-items:center;padding:16px"><img id="nfImg" alt="" style="max-width:100%;max-height:100%"></div>
+      <a class="btn" href="#/">بازگشت به گالری</a>
+    </section>
+  </div>
 
 </main>
 
@@ -331,39 +543,81 @@
     <div>
       <div style="font-weight:800;color:var(--ink);margin-bottom:4px">مخزن لوگوهای ایرانی</div>
       <div>لوگوها متعلق به برندهای مربوطه‌اند. لایسنس کد و داده‌ها: MIT.</div>
+      <div id="meta" style="margin-top:4px"></div>
     </div>
     <div>داده‌ها از پکیج متن‌باز <a href="https://www.npmjs.com/package/@persianlabs/icons" target="_blank" rel="noopener">@persianlabs/icons</a> تهیه شده است.</div>
   </div>
 </footer>
 
-<div class="toast" id="toast"></div>
+<div class="printonly" id="pressKit"></div>
+<button class="totop" id="totop" aria-label="بالا">↑</button>
+<div class="progress" id="progress"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="overlay" id="tourOv" role="dialog" aria-modal="true" aria-labelledby="tourT">
+  <div class="tour">
+    <h3 id="tourT"></h3>
+    <p id="tourP"></p>
+    <div class="row">
+      <div class="dots" id="tourDots"></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn ghost sm" id="tourSkip" type="button">رد کردن</button>
+        <button class="btn sm" id="tourNext" type="button">بعدی</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 (() => {
+  "use strict";
   const $ = s => document.querySelector(s);
-  const grid = $("#grid"), q = $("#q"), cat = $("#cat"), count = $("#count"), empty = $("#empty"), moreBtn = $("#moreBtn");
-  const gallery = $("#gallery"), detail = $("#detail");
-  const PAGE = 90;
-  let data = [], filtered = [], shown = 0, variant = "all", lastGalleryScroll = 0;
-
-  const norm = s => (s||"").toString().toLowerCase().replace(/[\u200c\u200f\u200e]/g,"").replace(/ي/g,"ی").replace(/ك/g,"ک");
+  const $$ = s => [...document.querySelectorAll(s)];
   const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  const fa = n => n.toLocaleString("fa-IR");
+  const fa = n => Number(n).toLocaleString("fa-IR");
+  const norm = s => (s||"").toString().toLowerCase().replace(/[\u200c\u200f\u200e]/g,"").replace(/ي/g,"ی").replace(/ك/g,"ک").trim();
+  const store = {
+    get(k, d){ try { const v = localStorage.getItem("ilk:"+k); return v == null ? d : JSON.parse(v); } catch(e){ return d; } },
+    set(k, v){ try { localStorage.setItem("ilk:"+k, JSON.stringify(v)); } catch(e){} }
+  };
   const BLANK = "data:image/gif;base64,R0lGODlhAQABAAAAACw=";
 
-  /* ---------- robust image loading ----------
-     lazy (IntersectionObserver) -> retry with backoff -> PNG -> letter placeholder */
-  const MAX_TRY = 3;
-  const io = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
-    entries.forEach(en => { if (en.isIntersecting) { io.unobserve(en.target); startLoad(en.target); } });
-  }, { rootMargin: "300px 0px" }) : null;
+  let data = [], byId = new Map();
+  let state = { q:"", cat:"all", v:"all", s:"name", l:"grid", size:170 };
+  let filtered = [], shown = 0;
+  const PAGE = 90;
 
-  function startLoad(img){
-    img.dataset.tries = "0"; img.dataset.stage = "svg";
-    img.src = img.dataset.svg;
+  /* ---------- toast ---------- */
+  let toastT;
+  function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 2000); }
+
+  /* ---------- favorites / compare / downloads ---------- */
+  const getFav = () => store.get("fav", []);
+  const setFav = v => store.set("fav", v);
+  const getCmp = () => store.get("cmp", []);
+  const setCmp = v => store.set("cmp", v);
+  function toggleFav(id){ let f = getFav(); if (f.includes(id)) { f = f.filter(x => x !== id); toast("از علاقه‌مندی‌ها حذف شد"); } else { f.push(id); toast("به علاقه‌مندی‌ها اضافه شد ⭐"); } setFav(f); refreshButtons(); }
+  function toggleCmp(id){
+    let c = getCmp();
+    if (c.includes(id)) { c = c.filter(x => x !== id); toast("از مقایسه حذف شد"); }
+    else if (c.length >= 4) { toast("حداکثر ۴ لوگو برای مقایسه"); return; }
+    else { c.push(id); toast("به مقایسه اضافه شد ⚖️"); }
+    setCmp(c); refreshButtons();
   }
-  function watch(img){ if (io) io.observe(img); else startLoad(img); }
+  function countDl(id){ const d = store.get("dl", {}); d[id] = (d[id]||0) + 1; store.set("dl", d); }
 
+  function refreshButtons(){
+    const f = getFav(), c = getCmp();
+    $$("[data-fav]").forEach(b => { const on = f.includes(b.dataset.fav); b.setAttribute("aria-pressed", on); b.textContent = on ? "★" : "☆"; b.title = on ? "حذف از علاقه‌مندی" : "افزودن به علاقه‌مندی"; });
+    $$("[data-cmp]").forEach(b => { const on = c.includes(b.dataset.cmp); b.setAttribute("aria-pressed", on); b.title = on ? "حذف از مقایسه" : "افزودن به مقایسه"; b.textContent = "⚖"; });
+  }
+
+  /* ---------- image loading: lazy + retry + PNG fallback + placeholder ---------- */
+  const MAX_TRY = 3;
+  const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { io.unobserve(en.target); startLoad(en.target); } }), { rootMargin: "300px 0px" }) : null;
+  function startLoad(img){ img.dataset.tries = "0"; img.dataset.stage = "svg"; img.src = img.dataset.svg; }
+  function watch(img){ if (io) io.observe(img); else startLoad(img); }
+  document.addEventListener("load", e => { if (e.target instanceof HTMLImageElement && e.target.dataset.svg) e.target.closest(".thumb")?.classList.remove("sk"); }, true);
   document.addEventListener("error", e => {
     const img = e.target;
     if (!(img instanceof HTMLImageElement) || !img.dataset.svg) return;
@@ -374,210 +628,607 @@
       setTimeout(() => { img.src = base + "?r=" + Date.now(); }, 500 * (tries + 1));
       return;
     }
-    if (img.dataset.stage === "svg") {
-      img.dataset.stage = "png"; img.dataset.tries = "0";
-      setTimeout(() => { img.src = img.dataset.png; }, 300);
-      return;
-    }
-    const ph = document.createElement("div");
-    ph.className = "ph"; ph.textContent = img.dataset.letter || "?";
-    img.replaceWith(ph);
+    if (img.dataset.stage === "svg") { img.dataset.stage = "png"; img.dataset.tries = "0"; setTimeout(() => { img.src = img.dataset.png; }, 300); return; }
+    const ph = document.createElement("div"); ph.className = "ph"; ph.textContent = img.dataset.letter || "?"; img.replaceWith(ph);
   }, true);
-
-  function imgTag(x, cls){
+  function imgTag(x, cls, style){
     const letter = (x.name || "?").trim().charAt(0).toUpperCase();
-    return `<img class="${cls||""}" alt="${esc(x.name)}" decoding="async" src="${BLANK}"
-      data-svg="${esc(x.svg)}" data-png="${esc(x.png)}" data-letter="${esc(letter)}">`;
+    return `<img class="${cls||""}" ${style?`style="${style}"`:""} alt="${esc(x.name)}" decoding="async" src="${BLANK}" data-svg="${esc(x.svg)}" data-png="${esc(x.png)}" data-letter="${esc(letter)}">`;
   }
 
   /* ---------- data ---------- */
   fetch("data/logos.json").then(r => r.json()).then(json => {
-    data = json;
-    const cats = [...new Map(json.map(x => [x.category, x.categoryFa])).entries()]
-      .sort((a,b) => a[1].localeCompare(b[1],"fa"));
-    cat.innerHTML = `<option value="all">همه‌ی دسته‌ها (${fa(cats.length)})</option>` +
-      cats.map(([k,v]) => `<option value="${k}">${esc(v)}</option>`).join("");
-    apply();
-    route();
+    data = json; data.forEach(x => byId.set(x.id, x));
+    const cats = [...new Map(json.map(x => [x.category, x.categoryFa])).entries()].sort((a,b) => a[1].localeCompare(b[1],"fa"));
+    $("#cat").innerHTML = `<option value="all">همه‌ی دسته‌ها (${fa(cats.length)})</option>` + cats.map(([k,v]) => `<option value="${k}">${esc(v)}</option>`).join("");
+    $("#qlist").innerHTML = [...new Set(json.map(x => x.name))].map(n => `<option value="${esc(n)}">`).join("");
+    $("#meta").textContent = `آخرین بروزرسانی داده‌ها: نسخه‌ی ${fa("1.0.4")} پکیج منبع · ${fa(json.length)} فایل`;
+    readUrl(); syncControls(); route();
+    setupOtd(); setupRandom(); setupTour();
   });
 
-  function apply(scroll){
-    const term = norm(q.value.trim()), c = cat.value;
-    filtered = data.filter(x =>
-      (variant === "all" || x.variant === variant) &&
-      (c === "all" || x.category === c) &&
-      (!term || norm(x.name).includes(term) || norm(x.slug).includes(term) || norm(x.categoryFa).includes(term)));
-    shown = 0; grid.innerHTML = ""; addPage();
-    count.textContent = `${fa(filtered.length)} لوگو`;
-    empty.classList.toggle("show", filtered.length === 0);
-    if (scroll === true) window.scrollTo({ top: $("#toolbar").offsetTop - 60, behavior: "auto" });
+  /* ---------- gallery ---------- */
+  function readUrl(){
+    const h = location.hash; const i = h.indexOf("?");
+    if (i < 0) return;
+    const p = new URLSearchParams(h.slice(i+1));
+    state.q = p.get("q") || ""; state.cat = p.get("cat") || "all"; state.v = p.get("v") || "all"; state.s = p.get("s") || "name"; state.l = p.get("l") || "grid";
+    state.size = +(p.get("size") || 170);
   }
-
-  function addPage(){
+  function writeUrl(){
+    const p = new URLSearchParams();
+    if (state.q) p.set("q", state.q); if (state.cat !== "all") p.set("cat", state.cat);
+    if (state.v !== "all") p.set("v", state.v); if (state.s !== "name") p.set("s", state.s);
+    if (state.l !== "grid") p.set("l", state.l);
+    const qs = p.toString();
+    const target = "#/" + (qs ? "?" + qs : "");
+    if (location.hash !== target && !location.hash.startsWith("#/logo/")) history.replaceState(null, "", target);
+  }
+  function syncControls(){
+    $("#q").value = state.q; $("#cat").value = state.cat; $("#sort").value = state.s;
+    $$("#variant button").forEach(b => b.classList.toggle("on", b.dataset.v === state.v));
+    $$("#layout button").forEach(b => b.classList.toggle("on", b.dataset.l === state.l));
+    $("#grid").classList.toggle("list", state.l === "list");
+    $("#size").value = state.size;
+    document.documentElement.style.setProperty("--cw", state.size + "px");
+  }
+  function applyFilters(){
+    const terms = norm(state.q).split(/\s+/).filter(Boolean);
+    filtered = data.filter(x => {
+      if (state.v !== "all" && x.variant !== state.v) return false;
+      if (state.cat !== "all" && x.category !== state.cat) return false;
+      if (terms.length) { const hay = norm(x.name + " " + x.slug + " " + x.categoryFa); if (!terms.every(t => hay.includes(t))) return false; }
+      return true;
+    });
+    const cmp = {
+      name: (a,b) => a.name.localeCompare(b.name, "en"),
+      cat: (a,b) => a.categoryFa.localeCompare(b.categoryFa,"fa") || a.name.localeCompare(b.name,"en"),
+      var: (a,b) => a.variant.localeCompare(b.variant) || a.name.localeCompare(b.name,"en")
+    }[state.s];
+    filtered.sort(cmp);
+  }
+  function renderChips(){
+    const arr = [];
+    if (state.q) arr.push(["q", "جستجو: " + state.q]);
+    if (state.cat !== "all") arr.push(["cat", data.find(x => x.category === state.cat)?.categoryFa || state.cat]);
+    if (state.v !== "all") arr.push(["v", state.v === "mono" ? "تک‌رنگ" : "رنگی"]);
+    $("#chips").innerHTML = arr.map(([k,l]) => `<button class="fchip" data-clear="${k}" type="button">${esc(l)} ✕</button>`).join("");
+  }
+  function renderGallery(reset){
+    if (reset !== false) { applyFilters(); shown = 0; $("#grid").innerHTML = ""; }
+    renderChips();
     const next = filtered.slice(shown, shown + PAGE);
     const frag = document.createDocumentFragment();
-    const fresh = [];
     next.forEach((x, k) => {
-      const a = document.createElement("a");
-      a.className = "card"; a.href = "#/logo/" + encodeURIComponent(x.id);
-      a.style.animationDelay = Math.min(k, 20) * 25 + "ms";
-      a.innerHTML = `<div class="thumb">${imgTag(x)}</div>
+      const c = document.createElement("div");
+      c.className = "card"; c.tabIndex = 0; c.dataset.go = x.id;
+      c.style.animationDelay = Math.min(k, 20) * 22 + "ms";
+      c.innerHTML = `<div class="cbtns"><button class="cbtn" data-fav="${x.id}" type="button" aria-label="علاقه‌مندی">☆</button><button class="cbtn" data-cmp="${x.id}" type="button" aria-label="مقایسه">⚖</button></div>
+        <div class="thumb sk">${imgTag(x)}</div>
         <div class="meta"><h3 title="${esc(x.name)}">${esc(x.name)}</h3>
         <div class="tags"><span class="tag ${x.variant==="mono"?"m":""}">${x.variant==="mono"?"تک‌رنگ":"رنگی"}</span>
         <span class="tag cat">${esc(x.categoryFa)}</span></div></div>`;
-      frag.appendChild(a);
-      fresh.push(a.querySelector("img"));
+      frag.appendChild(c);
+      const img = c.querySelector("img"); watch(img);
     });
-    grid.appendChild(frag);
-    fresh.forEach(watch);
+    $("#grid").appendChild(frag);
     shown += next.length;
-    moreBtn.hidden = shown >= filtered.length;
-    moreBtn.textContent = `نمایش بیشتر (${fa(filtered.length - shown)} مورد)`;
+    $("#count").textContent = `${fa(filtered.length)} لوگو`;
+    $("#empty").classList.toggle("show", filtered.length === 0);
+    $("#sugg").innerHTML = filtered.length === 0 ? `<button class="fchip" data-clear="q" type="button">پاک کردن جستجو</button><button class="fchip" data-clear="all" type="button">پاک کردن فیلترها</button>` : "";
+    $("#moreBtn").hidden = true;
+    refreshButtons();
   }
-  moreBtn.addEventListener("click", addPage);
-  q.addEventListener("input", () => apply(false));
-  cat.addEventListener("change", () => apply(true));
-  $("#variant").addEventListener("click", e => {
-    const b = e.target.closest("button[data-v]"); if (!b) return;
-    document.querySelectorAll("#variant button").forEach(x => x.classList.toggle("on", x === b));
-    variant = b.dataset.v; apply(true);
+  function applyAndRender(scroll){ writeUrl(); renderGallery(true); if (scroll) window.scrollTo({ top: $("#toolbar").offsetTop - 60 }); }
+
+  // infinite scroll
+  const sentinelIO = "IntersectionObserver" in window ? new IntersectionObserver(es => {
+    es.forEach(en => { if (en.isIntersecting && !$("#v-gallery").classList.contains("hidden") && shown < filtered.length) renderGallery(false); });
+  }, { rootMargin: "400px 0px" }) : null;
+  if (sentinelIO) sentinelIO.observe($("#sentinel"));
+
+  // events
+  let qT;
+  $("#q").addEventListener("input", e => {
+    clearTimeout(qT);
+    qT = setTimeout(() => {
+      state.q = e.target.value.trim(); applyAndRender(false);
+      if (state.q.length >= 2) { const h = store.get("hist", []).filter(x => x !== state.q); h.unshift(state.q); store.set("hist", h.slice(0,8)); renderHist(); }
+    }, 180);
+  });
+  $("#cat").addEventListener("change", e => { state.cat = e.target.value; applyAndRender(true); });
+  $("#sort").addEventListener("change", e => { state.s = e.target.value; applyAndRender(false); });
+  $("#variant").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.v = b.dataset.v; syncControls(); applyAndRender(true); });
+  $("#layout").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.l = b.dataset.l; syncControls(); writeUrl(); });
+  $("#size").addEventListener("input", e => { state.size = +e.target.value; document.documentElement.style.setProperty("--cw", state.size + "px"); });
+  $("#size").addEventListener("change", () => writeUrl());
+  $("#chips").addEventListener("click", e => {
+    const b = e.target.closest("[data-clear]"); if (!b) return; clearFilter(b.dataset.clear);
+  });
+  $("#sugg").addEventListener("click", e => { const b = e.target.closest("[data-clear]"); if (b) clearFilter(b.dataset.clear); });
+  function clearFilter(k){
+    if (k === "q") state.q = ""; if (k === "cat") state.cat = "all"; if (k === "v") state.v = "all";
+    if (k === "all") { state.q = ""; state.cat = "all"; state.v = "all"; }
+    syncControls(); applyAndRender(false);
+  }
+  $("#moreBtn").addEventListener("click", () => renderGallery(false));
+
+  $("#grid").addEventListener("click", e => {
+    const f = e.target.closest("[data-fav]"); if (f) { e.stopPropagation(); toggleFav(f.dataset.fav); return; }
+    const c = e.target.closest("[data-cmp]"); if (c) { e.stopPropagation(); toggleCmp(c.dataset.cmp); return; }
+    const card = e.target.closest("[data-go]"); if (card) location.hash = "#/logo/" + encodeURIComponent(card.dataset.go);
+  });
+  $("#grid").addEventListener("keydown", e => { if (e.key === "Enter" && e.target.dataset.go) location.hash = "#/logo/" + encodeURIComponent(e.target.dataset.go); });
+
+  function renderHist(){
+    const h = store.get("hist", []);
+    $("#hist").innerHTML = h.length ? `<span>اخیراً:</span>` + h.map(x => `<button type="button" data-h="${esc(x)}">${esc(x)}</button>`).join("") : "";
+  }
+  $("#hist").addEventListener("click", e => { const b = e.target.closest("[data-h]"); if (!b) return; state.q = b.dataset.h; syncControls(); applyAndRender(false); });
+  renderHist();
+
+  /* ---------- logo of the day & random ---------- */
+  function setupOtd(){
+    const day = Math.floor(Date.now() / 86400000);
+    const x = data[(day * 97) % data.length];
+    $("#otd").href = "#/logo/" + encodeURIComponent(x.id);
+    $("#otd").innerHTML = `<div class="thumb">${imgTag(x)}</div><div><small>لوگوی امروز</small><b>${esc(x.name)}</b><small>${esc(x.categoryFa)}</small></div>`;
+    watch($("#otd img"));
+  }
+  function setupRandom(){ $("#randomBtn").addEventListener("click", () => { const x = data[Math.floor(Math.random()*data.length)]; location.hash = "#/logo/" + encodeURIComponent(x.id); }); }
+
+  /* ---------- keyboard ---------- */
+  document.addEventListener("keydown", e => {
+    if (e.target.matches("input,textarea,select")) { if (e.key === "Escape") e.target.blur(); return; }
+    if (e.key === "/") { e.preventDefault(); if (location.hash.startsWith("#/logo")) location.hash = "#/"; setTimeout(() => $("#q").focus(), 60); }
+    if (e.key === "Escape" && $("#tourOv").classList.contains("open")) closeTour();
+    if (location.hash.startsWith("#/logo/")) {
+      if (e.key === "ArrowRight") goNeighbor(-1);
+      if (e.key === "ArrowLeft") goNeighbor(1);
+    }
   });
 
-  /* ---------- detail page ---------- */
-  function byId(id){ return data.find(x => x.id === id); }
+  /* ---------- logo detail ---------- */
+  function neighbors(x){
+    const list = data.filter(y => y.category === x.category && y.variant === x.variant).sort((a,b) => a.name.localeCompare(b.name,"en"));
+    const i = list.findIndex(y => y.id === x.id);
+    return { prev: list[(i - 1 + list.length) % list.length], next: list[(i + 1) % list.length] };
+  }
+  function goNeighbor(dir){
+    const m = location.hash.match(/^#\/logo\/(.+)$/); if (!m) return;
+    const x = byId.get(decodeURIComponent(m[1])); if (!x) return;
+    const n = neighbors(x); location.hash = "#/logo/" + encodeURIComponent((dir < 0 ? n.prev : n.next).id);
+  }
 
   function renderDetail(x){
-    const related = data.filter(y => y.category === x.category && y.slug !== x.slug).slice(0, 8);
-    const sameSlug = data.filter(y => y.slug === x.slug && y.id !== x.id);
-    const other = sameSlug[0];
     const variantLabel = x.variant === "mono" ? "تک‌رنگ" : "رنگی";
-    const embed = `<img src="logos/svg/${x.category}/${x.variant}/${x.slug}.svg" alt="${x.name}" width="120">`;
-    const absSvg = location.origin + location.pathname.replace(/index\.html$/,"") + x.svg;
-
-    detail.innerHTML = `
+    const n = neighbors(x);
+    const other = data.find(y => y.slug === x.slug && y.id !== x.id);
+    const base = location.origin + location.pathname.replace(/index\.html$/, "");
+    const absSvg = base + x.svg;
+    const related = data.filter(y => y.category === x.category && y.slug !== x.slug).slice(0, 8);
+    $("#v-logo").innerHTML = `
+      <div class="wrap">
       <div class="crumbs">
-        <a href="#/">گالری</a><span class="sep">/</span>
-        <a href="#/">${esc(x.categoryFa)}</a><span class="sep">/</span>
-        <span>${esc(x.name)}</span>
+        <a href="#/">گالری</a><span class="sep">/</span><a href="#/?cat=${encodeURIComponent(x.category)}">${esc(x.categoryFa)}</a><span class="sep">/</span><span>${esc(x.name)}</span>
         <span style="margin-inline-start:auto"><a href="#/" id="backBtn">← بازگشت</a></span>
       </div>
-
       <div class="dhero">
         <div class="stage">
           <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
-          <div class="tile" id="bigTile">${imgTag(x)}</div>
+          <div class="tile" id="bigTile" title="کلیک: تغییر پس‌زمینه · حرکت ماوس: زوم">${imgTag(x)}</div>
         </div>
         <div class="dinfo">
           <h1>${esc(x.name)}</h1>
-          <p class="lead">لوگوی ${esc(x.name)} در دسته‌ی «${esc(x.categoryFa)}»، نسخه‌ی ${variantLabel}، با فرمت وکتوری و تصویری.</p>
-          <div class="chips">
+          <p class="lead">لوگوی ${esc(x.name)} در دسته‌ی «${esc(x.categoryFa)}»، نسخه‌ی ${variantLabel}.</p>
+          <div class="dchips">
             <span class="chip">${esc(x.categoryFa)}</span>
             <span class="chip ${x.variant==="mono"?"gr":"cy"}">${variantLabel}</span>
             <span class="chip gr">SVG</span><span class="chip gr">PNG 512px</span>
-            ${other ? `<a class="chip cy" href="#/logo/${encodeURIComponent(other.id)}" style="text-decoration:none">نسخه‌ی ${other.variant==="mono"?"تک‌رنگ":"رنگی"} ←</a>` : ""}
+            ${other ? `<a class="chip cy" href="#/logo/${encodeURIComponent(other.id)}">نسخه‌ی ${other.variant==="mono"?"تک‌رنگ":"رنگی"} ←</a>` : ""}
+          </div>
+          <div class="actions">
+            <button class="btn ghost sm" data-fav="${x.id}" type="button">☆ علاقه‌مندی</button>
+            <button class="btn ghost sm" data-cmp="${x.id}" type="button">⚖ مقایسه</button>
+            <button class="btn ghost sm" id="shareBtn" type="button">🔗 اشتراک</button>
+            <button class="btn ghost sm" id="pressBtn" type="button">🖨 برگه‌ی مطبوعاتی</button>
           </div>
           <div class="dl-grid">
             <a class="btn" id="dSvg" href="${x.svg}" download="${x.slug}-${x.variant}.svg"><span>دانلود SVG</span><small>وکتوری، برای وب و طراحی</small></a>
             <a class="btn ghost" id="dPng" href="${x.png}" download="${x.slug}-${x.variant}.png"><span>دانلود PNG</span><small>۵۱۲px، پس‌زمینه‌ی شفاف</small></a>
           </div>
-          <p class="fine">فایل‌ها مستقیم از سرور دانلود می‌شوند؛ برای همه‌ی لوگوها از ZIP استفاده کنید.</p>
+          <div class="fmtrow">
+            <label class="sr" for="fmt">فرمت</label>
+            <select id="fmt"><option value="png">PNG</option><option value="webp">WebP</option><option value="jpg">JPG (پس‌زمینه‌ی سفید)</option></select>
+            <select id="fmtSize"><option value="512">۵۱۲px</option><option value="1024" selected>۱۰۲۴px</option><option value="2048">۲۰۴۸px</option></select>
+            <button class="btn sm" id="convBtn" type="button">تبدیل و دانلود</button>
+          </div>
+          <p class="fine">فایل‌ها مستقیم از سرور دانلود می‌شوند؛ تبدیل فرمت داخل مرورگر شما انجام می‌شود.</p>
         </div>
       </div>
 
       <div class="panels">
-        <div class="panel">
-          <h4><i></i>پیش‌نمایش</h4>
+        <div class="panel"><h4><i></i>پیش‌نمایش در اندازه‌ها</h4>
           <div class="sizes">
-            <div>${imgTag(x).replace("<img ", '<img style="width:96px;height:96px;object-fit:contain" ')}<span>۹۶px</span></div>
-            <div>${imgTag(x).replace("<img ", '<img style="width:56px;height:56px;object-fit:contain" ')}<span>۵۶px</span></div>
-            <div>${imgTag(x).replace("<img ", '<img style="width:32px;height:32px;object-fit:contain" ')}<span>۳۲px</span></div>
+            <div>${imgTag(x,"","width:96px;height:96px;object-fit:contain")}<span>۹۶px</span></div>
+            <div>${imgTag(x,"","width:56px;height:56px;object-fit:contain")}<span>۵۶px</span></div>
+            <div>${imgTag(x,"","width:32px;height:32px;object-fit:contain")}<span>۳۲px</span></div>
           </div>
         </div>
-        <div class="panel specs">
-          <h4><i></i>مشخصات فایل</h4>
+        <div class="panel"><h4><i></i>رنگ‌های غالب</h4>
+          <div class="palette" id="palette"><span class="fine">در حال تحلیل…</span></div>
+          <p class="fine">روی هر رنگ بزنید تا کد HEX کپی شود.</p>
+        </div>
+        <div class="panel specs"><h4><i></i>مشخصات فایل</h4>
           <dl>
             <dt>نام</dt><dd>${esc(x.slug)}</dd>
             <dt>دسته</dt><dd>${esc(x.category)}</dd>
             <dt>نسخه</dt><dd>${x.variant}</dd>
             <dt>SVG</dt><dd>${esc(x.svg)}</dd>
             <dt>PNG</dt><dd>${esc(x.png)}</dd>
+            <dt>دانلود</dt><dd>${fa(store.get("dl",{})[x.id]||0)} بار (این مرورگر)</dd>
           </dl>
         </div>
-        <div class="panel">
-          <h4><i></i>کد استفاده</h4>
-          <div class="codebox">
-            <button class="copy" id="copyBtn" type="button">کپی</button>
-            <pre id="codeTxt">${esc(embed)}</pre>
+      </div>
+
+      <div class="panels two" style="margin-top:14px">
+        <div class="panel"><h4><i></i>ویرایش رنگ اصلی</h4>
+          <div class="recolor">
+            <input type="color" id="recolorPick" value="#22c55e" aria-label="رنگ جدید">
+            <button class="btn ghost sm" id="recolorDl" type="button">دانلود SVG با رنگ جدید</button>
+            <button class="btn ghost sm" id="recolorReset" type="button">بازنشانی</button>
           </div>
+          <div class="recolor-prev"><img id="recolorImg" alt="پیش‌نمایش رنگ جدید" src="${x.svg}"></div>
+          <p class="fine" id="recolorInfo">رنگ غالب فایل با رنگ انتخابی جایگزین می‌شود.</p>
         </div>
+        <div class="panel"><h4><i></i>کد استفاده</h4>
+          <div class="tabs" id="codeTabs">
+            <button class="on" data-t="html" type="button">HTML</button>
+            <button data-t="css" type="button">CSS</button>
+            <button data-t="react" type="button">React</button>
+          </div>
+          <div class="codebox"><button class="copy" id="copyBtn" type="button">کپی</button><pre id="codeTxt"></pre></div>
+        </div>
+      </div>
+
+      <div class="pager">
+        <a class="btn ghost sm" href="#/logo/${encodeURIComponent(n.prev.id)}">→ ${esc(n.prev.name)}</a>
+        <a class="btn ghost sm" href="#/logo/${encodeURIComponent(n.next.id)}">${esc(n.next.name)} ←</a>
       </div>
 
       ${related.length ? `
       <div class="related">
         <h3>سایر لوگوهای «${esc(x.categoryFa)}»</h3>
         <div class="grid">
-          ${related.map((y,k)=>`<a class="card" href="#/logo/${encodeURIComponent(y.id)}" style="animation-delay:${k*40}ms">
-            <div class="thumb">${imgTag(y)}</div>
-            <div class="meta"><h3>${esc(y.name)}</h3><div class="tags"><span class="tag ${y.variant==="mono"?"m":""}">${y.variant==="mono"?"تک‌رنگ":"رنگی"}</span></div></div>
-          </a>`).join("")}
+          ${related.map((y,k)=>`<div class="card" tabindex="0" data-go="${esc(y.id)}" style="animation-delay:${k*40}ms">
+            <div class="thumb sk">${imgTag(y)}</div>
+            <div class="meta"><h3>${esc(y.name)}</h3><div class="tags"><span class="tag ${y.variant==="mono"?"m":""}">${y.variant==="mono"?"تک‌رنگ":"رنگی"}</span></div></div></div>`).join("")}
         </div>
       </div>` : ""}
-    `;
+      </div>`;
 
-    // the big tile toggles dark/light background on click
-    $("#bigTile").addEventListener("click", () => $("#bigTile").classList.toggle("dark"));
-    $("#bigTile").style.cursor = "pointer";
-    $("#bigTile").title = "برای تغییر پس‌زمینه کلیک کنید";
+    // images
+    $$("#v-logo img[data-svg]").forEach(watch);
 
-    // load all images in the detail view
-    detail.querySelectorAll("img[data-svg]").forEach(watch);
-    detail.querySelectorAll("img[data-svg]").forEach(im => { if (!io) return; });
+    // swipe between logos on touch
 
-    $("#copyBtn").addEventListener("click", async () => {
-      const txt = $("#codeTxt").textContent;
-      try { await navigator.clipboard.writeText(txt); }
-      catch(e){
-        const ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta);
-        ta.select(); try { document.execCommand("copy"); } catch(_){} ta.remove();
-      }
-      toast("کد کپی شد");
+    // zoom lens
+    const tile = $("#bigTile");
+    tile.addEventListener("click", () => tile.classList.toggle("dark"));
+    tile.addEventListener("mousemove", e => { const r = tile.getBoundingClientRect(); const img = tile.querySelector("img"); if (img) img.style.transformOrigin = ((e.clientX - r.left)/r.width*100) + "% " + ((e.clientY - r.top)/r.height*100) + "%"; });
+    tile.addEventListener("mouseenter", () => tile.classList.add("zoomed"));
+    tile.addEventListener("mouseleave", () => tile.classList.remove("zoomed"));
+
+    // conversion
+    $("#convBtn").addEventListener("click", () => convert(x, $("#fmt").value, +$("#fmtSize").value));
+
+    // share
+    $("#shareBtn").addEventListener("click", async () => {
+      const url = location.href;
+      if (navigator.share) { try { await navigator.share({ title: x.name, url }); return; } catch(e){} }
+      copyText(url, "لینک کپی شد");
     });
-    $("#dSvg").addEventListener("click", () => toast("دانلود SVG شروع شد"));
-    $("#dPng").addEventListener("click", () => toast("دانلود PNG شروع شد"));
+    $("#pressBtn").addEventListener("click", () => printPressKit(x));
+
+    // downloads counter
+    $("#dSvg").addEventListener("click", () => { countDl(x.id); toast("دانلود SVG شروع شد"); });
+    $("#dPng").addEventListener("click", () => { countDl(x.id); toast("دانلود PNG شروع شد"); });
+
+    // code snippets
+    const snippets = {
+      html: `<img src="${absSvg}" alt="${x.name}" width="120">`,
+      css: `.logo {\n  background: url("${absSvg}") no-repeat center / contain;\n  width: 120px;\n  height: 48px;\n}`,
+      react: `<img src="${absSvg}" alt="${x.name}" width={120} />`
+    };
+    let tab = "html";
+    const showCode = () => { $("#codeTxt").textContent = snippets[tab]; };
+    showCode();
+    $("#codeTabs").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; tab = b.dataset.t; $$("#codeTabs button").forEach(x => x.classList.toggle("on", x === b)); showCode(); });
+    $("#copyBtn").addEventListener("click", () => copyText($("#codeTxt").textContent, "کد کپی شد"));
+
+    // palette
+    extractPalette(x).then(cols => {
+      $("#palette").innerHTML = cols.length ? cols.map(c => `<button class="sw" type="button" data-hex="${c}" title="${c}"><i style="background:${c}"></i>${c}</button>`).join("") : `<span class="fine">رنگ قابل تحلیل نیست</span>`;
+    });
+    $("#palette").addEventListener("click", e => { const b = e.target.closest("[data-hex]"); if (b) copyText(b.dataset.hex, "کد رنگ کپی شد: " + b.dataset.hex); });
+
+    // recolor
+    setupRecolor(x);
+
+    refreshButtons();
+    window.scrollTo({ top: 0, behavior: "auto" });
   }
+
+  function copyText(txt, msg){
+    const done = () => toast(msg || "کپی شد");
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(done, () => fallbackCopy(txt, done));
+    else fallbackCopy(txt, done);
+  }
+  function fallbackCopy(txt, done){ const ta = document.createElement("textarea"); ta.value = txt; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch(e){} ta.remove(); done(); }
+
+  function loadImage(src){ return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; }); }
+
+  async function extractPalette(x){
+    try {
+      const img = await loadImage(x.png);
+      const cv = document.createElement("canvas"); cv.width = 96; cv.height = 96;
+      const ctx = cv.getContext("2d"); ctx.drawImage(img, 0, 0, 96, 96);
+      const d = ctx.getImageData(0, 0, 96, 96).data;
+      const buckets = new Map();
+      for (let i = 0; i < d.length; i += 4) {
+        if (d[i+3] < 200) continue;
+        const r = d[i], g = d[i+1], b = d[i+2];
+        const mx = Math.max(r,g,b), mn = Math.min(r,g,b);
+        if (mx > 238 && mn > 225) continue; // white-ish
+        if (mx < 30) continue;              // black-ish
+        if (mx - mn < 22) continue;         // gray
+        const k = [r,g,b].map(v => Math.round(v/32)*32).join(",");
+        buckets.set(k, (buckets.get(k)||0) + 1);
+      }
+      const top = [...buckets.entries()].sort((a,b) => b[1]-a[1]).slice(0, 5)
+        .map(([k]) => "#" + k.split(",").map(v => Math.min(255, +v).toString(16).padStart(2,"0")).join(""));
+      return top;
+    } catch(e){ return []; }
+  }
+
+  async function convert(x, fmt, size){
+    try {
+      toast("در حال تبدیل…");
+      const svgText = await (await fetch(x.svg)).text();
+      const url = URL.createObjectURL(new Blob([svgText], { type: "image/svg+xml" }));
+      const img = await loadImage(url);
+      const cv = document.createElement("canvas"); cv.width = size; cv.height = size;
+      const ctx = cv.getContext("2d");
+      if (fmt === "jpg") { ctx.fillStyle = "#ffffff"; ctx.fillRect(0,0,size,size); }
+      const s = Math.min(size / img.naturalWidth, size / img.naturalHeight);
+      const w = img.naturalWidth * s, h = img.naturalHeight * s;
+      ctx.drawImage(img, (size - w)/2, (size - h)/2, w, h);
+      const mime = fmt === "jpg" ? "image/jpeg" : fmt === "webp" ? "image/webp" : "image/png";
+      cv.toBlob(blob => {
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob); a.download = `${x.slug}-${x.variant}-${size}.${fmt}`;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => { URL.revokeObjectURL(a.href); URL.revokeObjectURL(url); }, 2000);
+        countDl(x.id); toast("دانلود شروع شد");
+      }, mime, 0.95);
+    } catch(e){ toast("تبدیل ناموفق بود"); }
+  }
+
+  function setupRecolor(x){
+    const pick = $("#recolorPick"), img = $("#recolorImg"), info = $("#recolorInfo");
+    let original = null, dominant = null, blobUrl = null;
+    fetch(x.svg).then(r => r.text()).then(t => {
+      original = t;
+      const counts = {};
+      (t.match(/#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b/g) || []).forEach(c => { c = c.toLowerCase(); if (["#fff","#ffffff","#000","#000000"].includes(c)) return; counts[c] = (counts[c]||0)+1; });
+      const top = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
+      dominant = top ? top[0] : null;
+      if (dominant) { info.textContent = `رنگ غالب فعلی: ${dominant} — با انتخاب رنگ، این رنگ جایگزین می‌شود.`; pick.value = dominant.length === 4 ? "#" + dominant.slice(1).split("").map(c=>c+c).join("") : dominant; }
+      else info.textContent = "این لوگو رنگ غالب قابل تغییر ندارد (سیاه/سفید یا چند رنگی).";
+    }).catch(()=>{});
+    const apply = () => {
+      if (!original) return;
+      let t = original;
+      if (dominant) t = t.split(dominant).join(pick.value); // exact match
+      if (blobUrl) URL.revokeObjectURL(blobUrl);
+      blobUrl = URL.createObjectURL(new Blob([t], { type: "image/svg+xml" }));
+      img.src = blobUrl;
+    };
+    pick.addEventListener("input", apply);
+    $("#recolorReset").addEventListener("click", () => { img.src = x.svg; if (dominant) pick.value = dominant.length === 4 ? "#" + dominant.slice(1).split("").map(c=>c+c).join("") : dominant; });
+    $("#recolorDl").addEventListener("click", () => {
+      if (!original) return;
+      let t = dominant ? original.split(dominant).join(pick.value) : original;
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([t], { type: "image/svg+xml" }));
+      a.download = `${x.slug}-custom.svg`; document.body.appendChild(a); a.click(); a.remove();
+      toast("فایل SVG با رنگ جدید دانلود شد");
+    });
+  }
+
+  function printPressKit(x){
+    const cols = [];
+    const el = $("#pressKit");
+    el.innerHTML = `<div class="pk"><h1>${esc(x.name)}</h1><p>دسته: ${esc(x.categoryFa)} · نسخه: ${x.variant==="mono"?"تک‌رنگ":"رنگی"}</p>
+      <p><img src="${location.origin}${location.pathname.replace(/index\.html$/,"")}${x.png}" alt=""></p>
+      <p>منبع: مخزن لوگوهای ایرانی · ${location.href}</p></div>`;
+    setTimeout(() => window.print(), 150);
+  }
+
+  /* ---------- compare ---------- */
+  function renderCompare(){
+    const ids = getCmp().filter(id => byId.has(id));
+    $("#cmpGrid").innerHTML = ids.map(id => { const x = byId.get(id); return `
+      <div class="col"><div class="thumb">${imgTag(x)}</div>
+        <div class="bd"><h3>${esc(x.name)}</h3><div class="tags"><span class="tag ${x.variant==="mono"?"m":""}">${x.variant==="mono"?"تک‌رنگ":"رنگی"}</span><span class="tag cat">${esc(x.categoryFa)}</span></div>
+        <a class="btn ghost sm" href="#/logo/${encodeURIComponent(id)}">صفحه‌ی لوگو</a>
+        <button class="btn ghost sm" data-cmp="${id}" type="button" style="margin-top:6px;width:100%">حذف از مقایسه</button></div></div>`; }).join("");
+    $$("#cmpGrid img[data-svg]").forEach(watch);
+    $("#cmpEmpty").style.display = ids.length ? "none" : "block";
+    refreshButtons();
+  }
+
+  /* ---------- favorites ---------- */
+  function renderFavs(){
+    const ids = getFav().filter(id => byId.has(id));
+    $("#favGrid").innerHTML = ids.map((id,k) => { const x = byId.get(id); return `
+      <div class="card" tabindex="0" data-go="${esc(id)}" style="animation-delay:${k*30}ms">
+        <div class="cbtns"><button class="cbtn" data-fav="${id}" type="button" aria-label="حذف">★</button></div>
+        <div class="thumb sk">${imgTag(x)}</div>
+        <div class="meta"><h3>${esc(x.name)}</h3><div class="tags"><span class="tag ${x.variant==="mono"?"m":""}">${x.variant==="mono"?"تک‌رنگ":"رنگی"}</span></div></div></div>`; }).join("");
+    $$("#favGrid img[data-svg]").forEach(watch);
+    $("#favEmpty").style.display = ids.length ? "none" : "block";
+    refreshButtons();
+  }
+  $("#favExport").addEventListener("click", () => {
+    const list = getFav().map(id => byId.get(id)).filter(Boolean).map(x => ({ name:x.name, category:x.categoryFa, variant:x.variant, svg:x.svg, png:x.png }));
+    const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([JSON.stringify(list, null, 2)], { type: "application/json" }));
+    a.download = "my-logo-collection.json"; document.body.appendChild(a); a.click(); a.remove();
+  });
+  $("#favClear").addEventListener("click", () => { if (confirm("همه‌ی علاقه‌مندی‌ها پاک شود؟")) { setFav([]); renderFavs(); toast("پاک شد"); } });
+  $("#cmpClear").addEventListener("click", () => { setCmp([]); renderCompare(); toast("مقایسه خالی شد"); });
+
+  /* ---------- stats ---------- */
+  function renderStats(){
+    const catCounts = {}; data.forEach(x => { catCounts[x.categoryFa] = (catCounts[x.categoryFa]||0)+1; });
+    const maxC = Math.max(...Object.values(catCounts));
+    $("#barsCat").innerHTML = Object.entries(catCounts).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `<div class="bar"><span>${esc(k)}</span><div class="track"><div class="fill" data-w="${(v/maxC*100).toFixed(1)}"></div></div><span>${fa(v)}</span></div>`).join("");
+    const color = data.filter(x => x.variant === "color").length, mono = data.length - color;
+    const dl = store.get("dl", {}); const total = Object.values(dl).reduce((a,b)=>a+b,0);
+    $("#barsVar").innerHTML = [["رنگی", color], ["تک‌رنگ", mono]].map(([k,v]) => `<div class="bar"><span>${k}</span><div class="track"><div class="fill" data-w="${(v/data.length*100).toFixed(1)}"></div></div><span>${fa(v)}</span></div>`).join("");
+    $("#dlTotal").textContent = `مجموع دانلودهای شما روی این مرورگر: ${fa(total)} بار · لوگوهای دانلودشده: ${fa(Object.keys(dl).length)}`;
+    requestAnimationFrame(() => setTimeout(() => $$("#v-stats .fill").forEach(f => f.style.width = f.dataset.w + "%"), 50));
+  }
+
+  /* ---------- game ---------- */
+  let gameScore = 0, gameRound = 0, gameAnswer = null;
+  const GAME_ROUNDS = 10;
+  function gameStart(){ gameScore = 0; gameRound = 0; gameNext(); }
+  function gameNext(){
+    if (gameRound >= GAME_ROUNDS) {
+      $("#gImg").removeAttribute("src"); $("#gOpts").innerHTML = "";
+      $("#gScore").innerHTML = `امتیاز نهایی: <b>${fa(gameScore)}</b> از ${fa(GAME_ROUNDS)} <br><button class="btn sm" id="gAgain" type="button" style="margin-top:10px">بازی دوباره</button>`;
+      $("#gNext").hidden = true;
+      $("#gAgain").addEventListener("click", gameStart);
+      return;
+    }
+    gameRound++;
+    const pool = data.filter(x => x.variant === "color" || x.variant === "mono");
+    const x = pool[Math.floor(Math.random()*pool.length)];
+    const others = new Set([x.name]);
+    while (others.size < 4) others.add(data[Math.floor(Math.random()*data.length)].name);
+    const opts = [...others].sort(() => Math.random() - 0.5);
+    gameAnswer = x.name;
+    const img = $("#gImg"); img.src = x.svg; img.alt = "لوگوی ناشناس";
+    $("#gOpts").innerHTML = opts.map(o => `<button type="button" data-o="${esc(o)}">${esc(o)}</button>`).join("");
+    $("#gScore").textContent = `سؤال ${fa(gameRound)} از ${fa(GAME_ROUNDS)} · امتیاز: ${fa(gameScore)}`;
+    $("#gNext").hidden = true;
+  }
+  $("#gOpts").addEventListener("click", e => {
+    const b = e.target.closest("[data-o]"); if (!b || !gameAnswer) return;
+    const right = b.dataset.o === gameAnswer;
+    if (right) { gameScore++; b.classList.add("ok"); toast("درست! 🎉"); } else { b.classList.add("bad"); toast("اشتباه — جواب: " + gameAnswer); }
+    $$("#gOpts button").forEach(x => { x.disabled = true; if (x.dataset.o === gameAnswer) x.classList.add("ok"); });
+    gameAnswer = null;
+    $("#gScore").textContent = `سؤال ${fa(gameRound)} از ${fa(GAME_ROUNDS)} · امتیاز: ${fa(gameScore)}`;
+    $("#gNext").hidden = false;
+  });
+  $("#gNext").addEventListener("click", gameNext);
+
+  /* ---------- 404 ---------- */
+  function show404(){
+    const x = data[Math.floor(Math.random()*data.length)];
+    $("#nfImg").src = x.svg;
+  }
+
+  /* ---------- tour ---------- */
+  const TOUR = [
+    ["به مخزن خوش آمدید", "۸۳۴ لوگوی برندهای ایرانی را اینجا جستجو و دانلود کنید. هر لوگو صفحه‌ی اختصاصی دارد."],
+    ["فیلتر و جستجو", "با کلید / سریع جستجو کنید. فیلترها در آدرس صفحه ذخیره می‌شوند تا لینکشان را بفرستید."],
+    ["علاقه‌مندی و مقایسه", "با ⭐ لوگو را ذخیره و با ⚖ تا ۴ لوگو را کنار هم مقایسه کنید."],
+    ["ابزار داخل صفحه‌ی لوگو", "رنگ غالب را ببینید، رنگ را عوض کنید، فرمت را تبدیل کنید یا با کشیدن انگشت به لوگوی بعدی بروید."]
+  ];
+  let tourI = 0;
+  function setupTour(){ if (!store.get("tourSeen", false)) openTour(); }
+  function openTour(){ tourI = 0; paintTour(); $("#tourOv").classList.add("open"); }
+  function closeTour(){ $("#tourOv").classList.remove("open"); store.set("tourSeen", true); }
+  function paintTour(){
+    $("#tourT").textContent = TOUR[tourI][0]; $("#tourP").textContent = TOUR[tourI][1];
+    $("#tourDots").innerHTML = TOUR.map((_, i) => `<i class="${i===tourI?"on":""}"></i>`).join("");
+    $("#tourNext").textContent = tourI === TOUR.length - 1 ? "شروع" : "بعدی";
+  }
+  $("#tourNext").addEventListener("click", () => { if (tourI >= TOUR.length - 1) closeTour(); else { tourI++; paintTour(); } });
+  $("#tourSkip").addEventListener("click", closeTour);
+  $("#helpBtn").addEventListener("click", openTour);
+
+  /* ---------- accessibility settings ---------- */
+  let fs = store.get("fs", 1);
+  const applyFs = () => document.documentElement.style.setProperty("--fs", fs);
+  applyFs();
+  $("#fsUp").addEventListener("click", () => { fs = Math.min(1.25, +(fs + 0.05).toFixed(2)); store.set("fs", fs); applyFs(); });
+  $("#fsDown").addEventListener("click", () => { fs = Math.max(0.9, +(fs - 0.05).toFixed(2)); store.set("fs", fs); applyFs(); });
+  const applyContrast = on => { document.documentElement.dataset.contrast = on ? "1" : "0"; $("#contrastBtn").setAttribute("aria-pressed", on); };
+  let contrast = store.get("contrast", false); applyContrast(contrast);
+  $("#contrastBtn").addEventListener("click", () => { contrast = !contrast; store.set("contrast", contrast); applyContrast(contrast); });
+  const applyMotion = on => { document.documentElement.dataset.reduce = on ? "1" : "0"; $("#motionBtn").setAttribute("aria-pressed", on); };
+  let reduce = store.get("reduce", false); applyMotion(reduce);
+  $("#motionBtn").addEventListener("click", () => { reduce = !reduce; store.set("reduce", reduce); applyMotion(reduce); });
+
+  /* ---------- scroll: progress + back to top ---------- */
+  const totop = $("#totop"), prog = $("#progress");
+  window.addEventListener("scroll", () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.width = (h > 0 ? scrollY / h * 100 : 0) + "%";
+    totop.classList.toggle("show", scrollY > 600);
+  }, { passive: true });
+  totop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+  /* swipe between logos (listeners attached once) */
+  (() => {
+    let tx = null;
+    const v = $("#v-logo");
+    v.addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, { passive: true });
+    v.addEventListener("touchend", e => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(dx) > 70 && !e.target.closest("input,select")) goNeighbor(dx > 0 ? -1 : 1); }, { passive: true });
+  })();
 
   /* ---------- router ---------- */
+  const VIEWS = ["v-gallery","v-logo","v-favorites","v-compare","v-stats","v-game","v-changelog","v-404"];
+  function showView(id){ VIEWS.forEach(v => $("#"+v).classList.toggle("hidden", v !== id)); }
+  function setNav(name){ $$("[data-nav]").forEach(a => a.classList.toggle("on", a.dataset.nav === name)); }
   function route(){
-    const m = location.hash.match(/^#\/logo\/(.+)$/);
+    const h = location.hash || "#/";
+    const m = h.match(/^#\/logo\/([^?]+)/);
     if (m) {
-      const x = byId(decodeURIComponent(m[1]));
-      if (x) {
-        document.title = x.name + " | مخزن لوگوهای ایرانی";
-        gallery.classList.add("hidden");
-        detail.classList.remove("hidden");
-        renderDetail(x);
-        window.scrollTo({ top: 0, behavior: "auto" });
-        return;
-      }
+      const x = byId.get(decodeURIComponent(m[1]));
+      if (x) { document.title = x.name + " | مخزن لوگوهای ایرانی"; showView("v-logo"); setNav("gallery"); renderDetail(x); return; }
+      showView("v-404"); show404(); setNav(""); document.title = "۴۰۴ | مخزن لوگوهای ایرانی"; return;
     }
-    // gallery
+    if (h === "#/favorites") { document.title = "علاقه‌مندی‌ها | مخزن"; showView("v-favorites"); setNav("favorites"); renderFavs(); return; }
+    if (h === "#/compare") { document.title = "مقایسه | مخزن"; showView("v-compare"); setNav("compare"); renderCompare(); return; }
+    if (h === "#/stats") { document.title = "آمار | مخزن"; showView("v-stats"); setNav("stats"); renderStats(); return; }
+    if (h === "#/game") { document.title = "بازی | مخزن"; showView("v-game"); setNav("game"); gameStart(); return; }
+    if (h === "#/changelog") { document.title = "تغییرات | مخزن"; showView("v-changelog"); setNav("changelog"); return; }
+    if (h.startsWith("#/") && !h.startsWith("#/?") && h !== "#/") { showView("v-404"); show404(); setNav(""); return; }
+    // gallery (with optional query)
     document.title = "مخزن لوگوهای برندهای ایرانی | Iran Logo Kit";
-    detail.classList.add("hidden"); detail.innerHTML = "";
-    gallery.classList.remove("hidden");
-    if (location.hash === "#logos") {
-      setTimeout(() => $("#logos").scrollIntoView({behavior:"smooth"}), 50);
-    } else if (location.hash === "#download" || location.hash === "#usage") {
-      setTimeout(() => document.getElementById(location.hash.slice(1)).scrollIntoView({behavior:"smooth"}), 50);
-    } else if (location.hash === "" || location.hash === "#/") {
-      // stay at top when entering the gallery fresh
-    }
+    showView("v-gallery"); setNav("gallery");
+    if (data.length) { readUrl(); syncControls(); applyAndRender(false); }
+    if (h === "#logos") setTimeout(() => $("#logos").scrollIntoView({ behavior: "smooth" }), 40);
+    if (h === "#download" || h === "#usage") setTimeout(() => document.getElementById(h.slice(1)).scrollIntoView({ behavior: "smooth" }), 40);
   }
-  window.addEventListener("hashchange", () => { route(); });
+  window.addEventListener("hashchange", () => { if (location.hash.startsWith("#/?")) readUrl(); route(); });
 
-  let toastT;
-  function toast(msg){
-    const t = $("#toast"); t.textContent = msg; t.classList.add("show");
-    clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 1800);
+  // global delegation: favorites/compare buttons anywhere
+  document.addEventListener("click", e => {
+    const f = e.target.closest("#v-logo [data-fav], #v-favorites [data-fav]"); if (f) { e.preventDefault(); toggleFav(f.dataset.fav); if (location.hash === "#/favorites") renderFavs(); }
+    const c = e.target.closest("#v-logo [data-cmp], #v-compare [data-cmp]"); if (c) { e.preventDefault(); toggleCmp(c.dataset.cmp); if (location.hash === "#/compare") renderCompare(); }
+    const card = e.target.closest("#v-favorites [data-go], #v-logo .related [data-go]");
+    if (card && !e.target.closest("button")) location.hash = "#/logo/" + encodeURIComponent(card.dataset.go);
+  });
+
+  /* ---------- service worker (offline) ---------- */
+  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
   }
 })();
 </script>

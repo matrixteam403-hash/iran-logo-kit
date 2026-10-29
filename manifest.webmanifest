@@ -1,0 +1,12 @@
+{
+  "name": "مخزن لوگوهای برندهای ایرانی",
+  "short_name": "لوگوها",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "fa",
+  "dir": "rtl",
+  "background_color": "#040f09",
+  "theme_color": "#040f09",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
