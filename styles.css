@@ -245,16 +245,13 @@ button{cursor:pointer}
 
 /* ---------- grid + cards ---------- */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:18px}
-.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px;min-width:0;opacity:0;translate:0 18px;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s,background .3s,opacity .55s var(--ease),translate .55s var(--ease)}
-.card.in{opacity:1;translate:0 0}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px;min-width:0;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s,background .3s;animation:rise .45s var(--ease) both}
 .card:hover,.card:focus-within{transform:translateY(-4px);border-color:var(--accent-line);background:#1b1c21;box-shadow:0 18px 36px -16px rgba(0,0,0,.8),0 0 0 1px rgba(34,197,94,.12)}
 .card-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
 .card-link:focus-visible{outline-offset:-2px;border-radius:16px}
 .tile{position:relative;aspect-ratio:1/1;border-radius:11px;display:grid;place-items:center;padding:21%;overflow:hidden;
   background:radial-gradient(75% 75% at 50% 45%,var(--glow,rgba(255,255,255,.035)),transparent 72%),var(--tile);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
-.tile::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.16) 48%,transparent 64%);transform:translateX(-130%);pointer-events:none}
-.card:hover .tile::before,.spot-card:hover .tile::before{transform:translateX(130%);transition:transform .7s ease}
 .tile img{width:100%;height:100%;object-fit:contain;transition:transform .45s var(--ease),filter .3s}
 .card:hover .tile img{transform:scale(1.07)}
 .tile.ld::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.06) 50%,transparent 70%);background-size:220% 100%;animation:shimmer 1.3s linear infinite}
@@ -481,79 +478,4 @@ body[data-tiles="dark"] .tile.mono.lt img{filter:invert(1)}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-}
-
-/* ---------- reveal-on-scroll generic ---------- */
-.rv{opacity:0;translate:0 16px;transition:opacity .6s var(--ease),translate .6s var(--ease)}
-.rv.in{opacity:1;translate:0 0}
-
-/* ---------- hero sheen + parallax ---------- */
-.sheen{position:absolute;inset:-30%;z-index:0;pointer-events:none;mix-blend-mode:screen;
-  background:radial-gradient(36% 32% at 32% 30%,rgba(255,255,255,.13),transparent 62%);
-  animation:sheen 9s ease-in-out infinite alternate}
-@keyframes sheen{from{transform:translate3d(-5%,-3%,0)}to{transform:translate3d(7%,5%,0)}}
-.promo-art{transform:translate3d(calc(var(--px,0)*14px),calc(var(--py,0)*10px),0);transition:transform .5s cubic-bezier(.22,.61,.36,1)}
-
-/* ---------- logo marquee ---------- */
-.mq{position:relative;display:flex;flex-direction:column;gap:10px;margin:26px 0 4px;padding:6px 0;overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
-.mq-row{overflow:hidden;direction:ltr}
-.mq-track{display:flex;width:max-content;direction:ltr;animation:mq 52s linear infinite}
-.mq-rev .mq-track{animation-direction:reverse;animation-duration:64s}
-.mq:hover .mq-track{animation-play-state:paused}
-@keyframes mq{to{transform:translateX(-50%)}}
-.mq-tile{display:grid;place-items:center;flex:0 0 auto;width:58px;height:58px;margin-inline-end:10px;border-radius:16px;background:#fff;
-  box-shadow:0 8px 20px -10px rgba(0,0,0,.65),inset 0 0 0 1px rgba(0,0,0,.05);transition:transform .25s var(--ease)}
-.mq-tile img{width:64%;height:64%;object-fit:contain}
-.mq-tile:hover{transform:scale(1.14) rotate(-3deg)}
-
-/* ---------- spotlight carousel ---------- */
-.spot-sec{margin-top:34px}
-.spot-nav{display:flex;gap:8px}
-.iconbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface-2);color:var(--text);
-  display:grid;place-items:center;cursor:pointer;transition:border-color .2s,color .2s,background .2s,transform .15s}
-.iconbtn svg{width:18px;height:18px}
-.iconbtn:hover{border-color:var(--accent-line);color:var(--accent-hi);background:var(--surface-3)}
-.iconbtn:active{transform:scale(.94)}
-.spot{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 16px;scrollbar-width:none}
-.spot::-webkit-scrollbar{display:none}
-.spot-card{flex:0 0 248px;scroll-snap-align:start;display:flex;flex-direction:column;gap:12px;padding:12px;
-  background:var(--surface);border:1px solid var(--line);border-radius:18px;
-  opacity:0;translate:0 18px;transition:opacity .55s var(--ease),translate .55s var(--ease),border-color .25s,transform .25s var(--ease),box-shadow .25s}
-.spot-card.in{opacity:1;translate:0 0}
-.spot-card:hover{border-color:var(--accent-line);transform:translateY(-4px);box-shadow:0 18px 36px -16px rgba(0,0,0,.8)}
-.spot-link{border-radius:14px;overflow:hidden}
-.spot-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.spot-tile{aspect-ratio:16/10;border-radius:14px;padding:0;display:block;position:relative}
-.spot-tile img{position:absolute;inset:15% 13%;width:74%;height:70%}
-.spot-meta{display:flex;flex-direction:column;gap:3px;padding-inline:4px}
-.spot-meta b{font-size:15px;font-weight:800}
-.spot-meta span{color:var(--muted);font-size:11.5px}
-.spot-actions{display:flex;gap:8px;margin-top:auto;padding-inline:4px}
-.spot-actions .btn{flex:1}
-
-/* ---------- detail cover life ---------- */
-.cover img{transition:transform .5s var(--ease)}
-.cover:hover img{transform:scale(1.05) rotate(-1.5deg)}
-
-/* ---------- responsive tweaks for new blocks ---------- */
-@media (max-width:900px){
-  .mq-rev{display:none}
-  .spot-card{flex-basis:224px}
-}
-@media (max-width:720px){
-  .mq{margin:18px 0 2px}
-  .spot-card{flex-basis:206px}
-  .spot-sec{margin-top:26px}
-}
-@media (max-width:380px){
-  .mq-tile{width:48px;height:48px;border-radius:13px;margin-inline-end:8px}
-  .spot-card{flex-basis:186px}
-}
-@media (prefers-reduced-motion: reduce){
-  .mq-track{animation:none}
-  .sheen{animation:none}
-  .card,.rv,.spot-card{opacity:1;translate:0 0;transition:none}
-  .promo-art{transform:none;transition:none}
 }
