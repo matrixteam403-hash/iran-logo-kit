@@ -169,6 +169,113 @@
     if (location.hash !== h && !(h === "#/" && !location.hash)) history.replaceState(null, "", h);
   }
 
+  /* ---------- home extras: marquee + spotlight ---------- */
+  function marquee() {
+    const byCat = new Map(cats.map(c => [c.key, []]));
+    data.forEach(x => { if (x.variant === "color") byCat.get(x.category)?.push(x); });
+    const pool = [];
+    byCat.forEach(arr => pool.push(...arr.slice(0, 2)));
+    for (let i = pool.length - 1; i > 0; i--) { const j = (i * 7 + 3) % (i + 1); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    const tiles = pool.slice(0, 34).map(x =>
+      `<a class="mq-tile" href="#/logo/${encodeURIComponent(x.id)}" aria-label="${esc(x.name)}">${imgTag(x, "", false)}</a>`).join("");
+    return `
+      <div class="mq" aria-label="نمونه‌ای از برندهای مخزن">
+        <div class="mq-row"><div class="mq-track">${tiles}${tiles}</div></div>
+        <div class="mq-row mq-rev"><div class="mq-track">${tiles}${tiles}</div></div>
+      </div>`;
+  }
+
+  function spotlight() {
+    const items = FEATURED.map(id => byId.get(id)).filter(Boolean);
+    return `
+      <section class="sec spot-sec" aria-labelledby="s-t">
+        <div class="sec-head rv">
+          <div>
+            <h2 id="s-t">ویترین برندها</h2>
+            <p>نگاهی نزدیک به چند برند پرطرفدار؛ با یک کلیک وارد صفحه‌ی اختصاصی شوید.</p>
+          </div>
+          <div class="spot-nav">
+            <button type="button" class="iconbtn" data-spot="-1" aria-label="قبلی">${icon("chev")}</button>
+            <button type="button" class="iconbtn" data-spot="1" aria-label="بعدی">${icon("chev-r")}</button>
+          </div>
+        </div>
+        <div class="spot" id="spot">
+          ${items.map(x => `
+            <article class="spot-card">
+              <a class="spot-link" href="#/logo/${encodeURIComponent(x.id)}" aria-label="صفحه‌ی ${esc(x.name)}">
+                <div ${tileAttrs(x, "tile spot-tile")}>${imgTag(x)}</div>
+              </a>
+              <div class="spot-meta"><b>${esc(x.name)}</b><span>${esc(x.categoryFa)} · ${variantFa(x)}</span></div>
+              <div class="spot-actions">
+                <a class="btn btn-sm" href="#/logo/${encodeURIComponent(x.id)}">${icon("eye")}دیدن صفحه</a>
+                <a class="btn btn-ghost btn-sm" href="${esc(x.svg)}" download="${esc(dlName(x, "svg"))}">${icon("download")}SVG</a>
+              </div>
+            </article>`).join("")}
+        </div>
+      </section>`;
+  }
+
+  function scrollSpot(dir) {
+    const el = $("#spot");
+    if (!el) return;
+    const cards = $$(".spot-card", el);
+    if (!cards.length) return;
+    const rb = el.getBoundingClientRect();
+    let cur = 0, best = Infinity;
+    cards.forEach((c, i) => {
+      const d = Math.abs(c.getBoundingClientRect().right - rb.right);
+      if (d < best) { best = d; cur = i; }
+    });
+    const t = Math.max(0, Math.min(cards.length - 1, cur + dir));
+    cards[t].scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+  }
+
+  /* ---------- reveal on scroll + count-up + hero parallax ---------- */
+  const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let io = null;
+  function observeReveal() {
+    const els = $$(".card:not(.in), .rv:not(.in), .spot-card:not(.in)");
+    if (!("IntersectionObserver" in window) || reduced()) { els.forEach(el => el.classList.add("in")); return; }
+    io = io || new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        el.style.transitionDelay = (el.dataset.rvd || 0) + "ms";
+        el.classList.add("in");
+        setTimeout(() => { el.style.transitionDelay = ""; }, 900);
+        io.unobserve(el);
+      });
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.04 });
+    els.forEach((el, i) => { el.dataset.rvd = (i % 12) * 40; io.observe(el); });
+  }
+
+  function countUp(el) {
+    const target = +el.dataset.cnt;
+    if (reduced()) { el.textContent = fa(target); return; }
+    const t0 = performance.now(), dur = 1100;
+    const step = t => {
+      const p = Math.min(1, (t - t0) / dur);
+      el.textContent = fa(Math.round(target * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  function heroFx() {
+    $$("[data-cnt]").forEach(countUp);
+    const promo = $(".promo");
+    if (!promo || !matchMedia("(pointer:fine)").matches || reduced()) return;
+    promo.addEventListener("pointermove", e => {
+      const r = promo.getBoundingClientRect();
+      promo.style.setProperty("--px", (((e.clientX - r.left) / r.width) - .5).toFixed(3));
+      promo.style.setProperty("--py", (((e.clientY - r.top) / r.height) - .5).toFixed(3));
+    });
+    promo.addEventListener("pointerleave", () => {
+      promo.style.setProperty("--px", 0);
+      promo.style.setProperty("--py", 0);
+    });
+  }
+
   /* ---------- home ---------- */
   function home() {
     view = "home";
@@ -180,12 +287,13 @@
       <div class="wrap">
         <section class="promo" aria-labelledby="hero-t">
           <div class="promo-bg"></div>
+          <i class="sheen" aria-hidden="true"></i>
           <div class="promo-art" aria-hidden="true">${art}</div>
           <div class="promo-body">
             <div class="chips">
-              <span class="score">فایل <b>${fa(stats.files)}</b></span>
-              <span class="chip"><b>${fa(stats.brands)}</b> برند</span>
-              <span class="chip"><b>${fa(stats.cats)}</b> دسته</span>
+              <span class="score">فایل <b data-cnt="${stats.files}">${fa(0)}</b></span>
+              <span class="chip"><b data-cnt="${stats.brands}">${fa(0)}</b> برند</span>
+              <span class="chip"><b data-cnt="${stats.cats}">${fa(0)}</b> دسته</span>
               <span class="chip">SVG · PNG</span>
             </div>
             <h1 id="hero-t" tabindex="-1">همه‌ی لوگوهای برندهای ایرانی، یک‌جا!</h1>
@@ -197,8 +305,12 @@
           </div>
         </section>
 
+        ${marquee()}
+
+        ${spotlight()}
+
         <section class="sec" id="logos" aria-labelledby="g-t">
-          <div class="sec-head">
+          <div class="sec-head rv">
             <div>
               <h2 id="g-t">گالری لوگوها</h2>
               <p>روی هر لوگو بزنید تا صفحه‌ی اختصاصی آن با دانلود SVG و PNG باز شود.</p>
@@ -245,7 +357,7 @@
         </section>
 
         <section class="sec" id="download" aria-labelledby="d-t">
-          <div class="band">
+          <div class="band rv">
             <div class="band-txt">
               <span class="band-ic">${icon("zip")}</span>
               <div>
@@ -260,6 +372,8 @@
       </div>`;
     syncControls();
     renderGrid();
+    heroFx();
+    observeReveal();
     const row = $("#cats");
     const edge = () => row.classList.toggle("at-end", Math.abs(row.scrollLeft) + row.clientWidth >= row.scrollWidth - 4);
     row.addEventListener("scroll", edge, { passive: true });
@@ -300,6 +414,7 @@
     const part = list.slice(0, state.shown);
     grid.innerHTML = part.map(x => card(x, state.v === "all")).join("");
     settleImages(grid);
+    observeReveal();
 
     $$(".tabs [data-n]").forEach(n => { n.textContent = fa(counts[n.dataset.n]); });
     let total = 0;
@@ -665,6 +780,8 @@
 
   document.addEventListener("click", e => {
     const t = e.target;
+    const sp = t.closest("[data-spot]");
+    if (sp) { scrollSpot(+sp.dataset.spot); return; }
     const ddBtn = t.closest(".dd-btn");
     if (ddBtn) {
       const dd = ddBtn.parentElement;
